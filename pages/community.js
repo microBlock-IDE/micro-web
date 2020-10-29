@@ -9,12 +9,21 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 
 library.add(fas, fab, far);
 
-export default function Blog() {
+export default function Community({ host, url }) {
   return (
     <>
       <Head>
         <title>ชุมชน - microBlock IDE</title>
         <link rel="icon" href="/favicon.ico" />
+
+        <meta name="description" content="กลุ่มผู้ใช้งาน microBlock IDE ในช่องทางต่าง ๆ" />
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:url" content={`https://${host}${url}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="ชุมชน - microBlock IDE" />
+        <meta property="og:description" content="กลุ่มผู้ใช้งาน microBlock IDE ในช่องทางต่าง ๆ" />
+        <meta property="og:image" content={`https://${host}/images/facebook-share-image.png`} />
       </Head>
 
       <Layout>
@@ -94,3 +103,7 @@ export default function Blog() {
     </>
   );
 };
+
+export async function getServerSideProps({ req, query }) {
+  return { props: { host: req.headers.host, url: req.url } }
+}

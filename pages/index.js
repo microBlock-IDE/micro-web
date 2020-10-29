@@ -7,6 +7,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { useRouter } from 'next/router'
 
 library.add(fas, fab, far);
 
@@ -45,12 +46,21 @@ let CardBox = (props) => (
   </>
 );
 
-export default function Home() {
+export default function Home({ host, url }) {
   return (
     <>
       <Head>
         <title>microBlock IDE เขียนโปรแกรมบอร์ด KidBright ด้วยบล็อกและไพทอน</title>
         <link rel="icon" href="/favicon.ico" />
+
+        <meta name="description" content="ดาวน์โหลดโปรแกรม microBlock IDE อ่านบทความ KidBright การใช้งาน microBlock กับ KidBright" />
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:url" content={`https://${host}${url}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="microBlock IDE เขียนโปรแกรมบอร์ด KidBright ด้วยบล็อกและไพทอน" />
+        <meta property="og:description" content="ดาวน์โหลดโปรแกรม microBlock IDE อ่านบทความ KidBright การใช้งาน microBlock กับ KidBright" />
+        <meta property="og:image" content={`https://${host}/images/facebook-share-image.png`} />
       </Head>
 
       <style jsx>{`
@@ -255,3 +265,7 @@ export default function Home() {
     </>
   );
 };
+
+export async function getServerSideProps({ req, query }) {
+  return { props: { host: req.headers.host, url: req.url } }
+}

@@ -3,7 +3,7 @@ import { Row, Col, ListGroup } from 'react-bootstrap';
 import Link from 'next/link'
 import Layout from '../../component/Layout.js';
 
-export default function LearnPost({ post, posts }) {
+export default function LearnPost({ post, posts, host, url }) {
   return (
     <>
       <Head>
@@ -14,7 +14,7 @@ export default function LearnPost({ post, posts }) {
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="" />
 
-        <meta property="og:url" content="" />
+        <meta property="og:url" content={`https://${host}${url}`} />
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title.rendered} />
         <meta property="og:description" content={post.yoast.metadesc} />
@@ -35,10 +35,10 @@ export default function LearnPost({ post, posts }) {
           <Row>
             <Col xs={3}>
               <h4>โพสอื่น ๆ</h4>
-              <ListGroup defaultActiveKey={`/post/${post.id}`}>
+              <ListGroup defaultActiveKey={`/post/${post.id}/${encodeURI(post.title.rendered)}`}>
                 {posts.map(post => (
-                  <Link href={`/post/${post.id}`} passHref>
-                    <ListGroup.Item action dangerouslySetInnerHTML={{__html: post.title.rendered }}></ListGroup.Item>
+                  <Link href={`/post/${post.id}/${encodeURI(post.title.rendered)}`} passHref>
+                    <ListGroup.Item action dangerouslySetInnerHTML={{ __html: post.title.rendered }}></ListGroup.Item>
                   </Link>
                 ))}
               </ListGroup>
@@ -77,5 +77,5 @@ export async function getServerSideProps({ req, query }) {
   let posts = await fetch(`https://manager.microblock.app/wp-json/wp/v2/posts?categories=${post.categories[0]}&_fields[]=id&_fields[]=title`);
   posts = await posts.json();
 
-  return { props: { post: post, posts: posts } }
+  return { props: { post: post, posts: posts, host: req.headers.host, url: req.url } }
 }

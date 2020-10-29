@@ -9,12 +9,21 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 
 library.add(fas, fab, far);
 
-export default function Contactus() {
+export default function Contactus({ host, url }) {
   return (
     <>
       <Head>
         <title>ติดต่อเรา - microBlock IDE</title>
         <link rel="icon" href="/favicon.ico" />
+
+        <meta name="description" content="ติดต่อทีมพัฒนา microBlock และพาร์ทเนอร์" />
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:url" content={`https://${host}${url}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="ติดต่อเรา - microBlock IDE" />
+        <meta property="og:description" content="ติดต่อทีมพัฒนา microBlock และพาร์ทเนอร์" />
+        <meta property="og:image" content={`https://${host}/images/facebook-share-image.png`} />
       </Head>
 
       <Layout>
@@ -126,3 +135,8 @@ export default function Contactus() {
     </>
   );
 };
+
+export async function getServerSideProps({ req, query }) {
+  return { props: { host: req.headers.host, url: req.url } }
+}
+

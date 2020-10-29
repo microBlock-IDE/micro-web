@@ -9,12 +9,21 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 
 library.add(fas, fab, far);
 
-export default function Download() {
+export default function Download({ host, url }) {
   return (
     <>
       <Head>
         <title>ดาวน์โหลด microBlock IDE</title>
         <link rel="icon" href="/favicon.ico" />
+
+        <meta name="description" content="ดาวน์โหลดโปรแกรม microBlock IDE เขียนโปรแกรม KidBright ด้วยบล็อกและไพทอน" />
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:url" content={`https://${host}${url}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="ดาวน์โหลด microBlock IDE" />
+        <meta property="og:description" content="ดาวน์โหลดโปรแกรม microBlock IDE เขียนโปรแกรม KidBright ด้วยบล็อกและไพทอน" />
+        <meta property="og:image" content={`https://${host}/images/facebook-share-image.png`} />
       </Head>
 
       <style jsx>{`
@@ -114,3 +123,8 @@ export default function Download() {
     </>
   );
 };
+
+export async function getServerSideProps({ req, query }) {
+  return { props: { host: req.headers.host, url: req.url } }
+}
+
