@@ -1,0 +1,59 @@
+import Head from 'next/head'
+import { Row, Col, Button } from 'react-bootstrap';
+import Layout from '../component/Layout.js';
+import TopicBox from '../component/TopicBox.js';
+
+export default function Learn(props) {
+  let categorys = [
+    {
+      id: 3,
+      name: "บทความการใช้งาน"
+    },
+    {
+      id: 4,
+      name: "วีดีโอ"
+    },
+    {
+      id: 5,
+      name: "โครงงาน"
+    }
+  ];
+
+  return (
+    <>
+      <Head>
+        <title>ศูนย์การเรียนรู้ - microBlock IDE</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <Layout>
+        <section className="bg-light text-center p-5 mb-5">
+          <h1 className="h1 mb-3">ศูนย์การเรียนรู้</h1>
+          <p className="lead mb-3">เรียนรู้การใช้งาน microBlock IDE ตั้งแต่เริ่มต้นจนสร้างโปรเจคได้</p>
+        </section>
+        <section className="mb-5">
+          {categorys.map((category) => (
+            <div key={category.id} className="container mb-5">
+              <h2 className="mb-4">{category.name}</h2>
+              <Row className="row-cols-4">
+                {props.posts.filter(post => post.categories.indexOf(category.id) >= 0).map(post => (
+                  <Col>
+                    <TopicBox key={post.id} id={post.id} title={post.title.rendered} text={post.yoast.metadesc} cover={post.yoast["opengraph-image"]} category={category.name} />
+                  </Col>
+                ))}
+              </Row>
+            </div>
+          ))}
+        </section>
+      </Layout>
+    </>
+  );
+};
+
+export async function getServerSideProps({ req, query }) {
+  const res = await fetch("https://manager.microblock.app/wp-json/wp/v2/posts?_fields[]=id&_fields[]=modified&_fields[]=title&_fields[]=categories&_fields[]=yoast.metadesc&_fields[]=yoast.opengraph-image");
+  const data = await res.json();
+
+  return { props: { posts: data } }
+}
+
