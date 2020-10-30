@@ -68,12 +68,12 @@ export default function Download({ host, url }) {
               <ul style={{
                 marginBottom: 0
               }}>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0-beta-2/microBlock.IDE.2.0.0-beta-2.win.x86.msi">ดาวน์โหลดไฟล์ติดตั้งสำหรับ Windows 32 บิต</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0-beta-2/microBlock.IDE.2.0.0-beta-2.win.x86.portable.zip">ดาวน์โหลดโปรแกรมสำหรับ Windows 32 บิต (ไม่ต้องติดตั้ง)</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0-beta-2/microBlock.IDE.2.0.0-beta-2.win.x64.msi">ดาวน์โหลดไฟล์ติดตั้งโปรแกรมสำหรับ Windows 64 บิต</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0-beta-2/microBlock.IDE.2.0.0-beta-2.win.x64.portable.zip">ดาวน์โหลดโปรแกรมสำหรับ Windows 64 บิต (ไม่ต้องติดตั้ง)</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0-beta-2/microBlock.IDE-2.0.0-beta-2.macos.x64.dmg">ดาวน์โหลดโปรแกรมสำหรับ macOS</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0-beta-2/microBlock.IDE.2.0.0-beta-2.ubuntu.x64.AppImage">ดาวน์โหลดโปรแกรมสำหรับ Ubuntu 64 บิต (ไม่ต้องติดตั้ง)</a></li>
+                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.win.x86.msi">ดาวน์โหลดไฟล์ติดตั้งสำหรับ Windows 32 บิต</a></li>
+                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.win.x86.portable.zip">ดาวน์โหลดโปรแกรมสำหรับ Windows 32 บิต (ไม่ต้องติดตั้ง)</a></li>
+                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.win.x86-64.msi">ดาวน์โหลดไฟล์ติดตั้งโปรแกรมสำหรับ Windows 64 บิต</a></li>
+                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.win.x86-64.portable.zip">ดาวน์โหลดโปรแกรมสำหรับ Windows 64 บิต (ไม่ต้องติดตั้ง)</a></li>
+                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.macos.x86-64.dmg">ดาวน์โหลดโปรแกรมสำหรับ macOS</a></li>
+                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.ubuntu.x86-64.AppImage">ดาวน์โหลดโปรแกรมสำหรับ Ubuntu 64 บิต (ไม่ต้องติดตั้ง)</a></li>
               </ul>
             </div>
           </div>
