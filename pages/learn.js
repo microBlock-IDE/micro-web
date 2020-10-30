@@ -6,6 +6,10 @@ import TopicBox from '../component/TopicBox.js';
 export default function Learn({ posts, host, url }) {
   let categorys = [
     {
+      id: 6,
+      name: "Quickstart guide"
+    },
+    {
       id: 3,
       name: "บทความการใช้งาน"
     },
