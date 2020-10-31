@@ -2,6 +2,8 @@ import Head from 'next/head'
 import { Row, Col, ListGroup } from 'react-bootstrap';
 import Link from 'next/link'
 import Layout from '../../component/Layout.js';
+import DisqusComments from '../../component/DisqusComments.js'
+import AddThis from '../../component/AddThis.js'
 
 export default function LearnPost({ post, posts, host, url }) {
   return (
@@ -28,7 +30,7 @@ export default function LearnPost({ post, posts, host, url }) {
           <h1 className="h1 mb-3" dangerouslySetInnerHTML={{__html: post.title.rendered }}></h1>
           <p className="lead mb-3" dangerouslySetInnerHTML={{__html: post.yoast.metadesc }}></p>
           <div>
-            <div className="addthis_inline_share_toolbox"></div>
+            <AddThis url={`https://${host}${url}`} />
           </div>
         </section>
         <section className="container mb-3">
@@ -37,7 +39,7 @@ export default function LearnPost({ post, posts, host, url }) {
               <h4>โพสอื่น ๆ</h4>
               <ListGroup defaultActiveKey={`/post/${post.id}/${encodeURI(post.title.rendered)}`}>
                 {posts.map(post => (
-                  <Link href={`/post/${post.id}/${encodeURI(post.title.rendered)}`} passHref>
+                  <Link key={post.id} href={`/post/${post.id}/${encodeURI(post.title.rendered)}`} passHref>
                     <ListGroup.Item action dangerouslySetInnerHTML={{ __html: post.title.rendered }}></ListGroup.Item>
                   </Link>
                 ))}
@@ -49,21 +51,12 @@ export default function LearnPost({ post, posts, host, url }) {
               </div>
               <article className="mb-3" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
               <div className="container mb-5">
-                <div id="disqus_thread"></div>
+                <DisqusComments post={{ id: +post.id, title: post.title.rendered }} />
               </div>
             </Col>
           </Row>
         </section>
       </Layout>
-      <script dangerouslySetInnerHTML={{
-        __html: `
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://microblog-6.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-        `}} />
     </>
   );
 };
