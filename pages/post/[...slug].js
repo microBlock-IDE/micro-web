@@ -14,7 +14,7 @@ export default function LearnPost({ post, posts, host, url }) {
 
         <meta name="description" content={post.yoast.metadesc} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="" />
+        <link rel="canonical" href={`https://${host}${url}`} />
 
         <meta property="og:url" content={`https://${host}${url}`} />
         <meta property="og:type" content="article" />
@@ -25,6 +25,14 @@ export default function LearnPost({ post, posts, host, url }) {
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f95af47011cdcaa"></script>
       </Head>
 
+      <style jsx>{`
+      @media screen and (max-width: 992px) {
+        .list-post {
+          order: 2;
+        }
+      }
+      `}</style>
+
       <Layout>
         <section className="bg-light text-center p-5 mb-5">
           <h1 className="h1 mb-3" dangerouslySetInnerHTML={{__html: post.title.rendered }}></h1>
@@ -33,9 +41,9 @@ export default function LearnPost({ post, posts, host, url }) {
             <AddThis url={`https://${host}${url}`} />
           </div>
         </section>
-        <section className="container mb-3">
+        <section className="container mb-3 main-container">
           <Row>
-            <Col xs={3}>
+            <div className="col-lg-3 list-post">
               <h4>โพสอื่น ๆ</h4>
               <ListGroup defaultActiveKey={`/post/${post.id}/${encodeURI(post.title.rendered)}`}>
                 {posts.map(post => (
@@ -44,7 +52,7 @@ export default function LearnPost({ post, posts, host, url }) {
                   </Link>
                 ))}
               </ListGroup>
-            </Col>
+            </div>
             <Col>
               <div className="mb-3">
                 <img src={post.yoast["opengraph-image"]} alt={post.title.rendered} />

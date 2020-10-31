@@ -103,8 +103,8 @@ export default function Contactus({ host, url }) {
               </ul>
             </Col>
           </Row>
-          <Row className="mb-5 text-center">
-            <Col id="Senses">
+          <Row className="text-center">
+            <Col id="Senses" sm={true} className="mb-5">
               <img src="/images/Senses_logo_200x200.png" alt="Senses IoT logo" className="mb-3" />
               <div className="h4">Senses IoT</div>
               <p>ให้บริการ IoT Dashboard มีส่วนร่วมในโครงการ microBlock ด้านการทดสอบ ให้คำแนะนำการพัฒนาโปรแกรม และอื่น ๆ</p>
@@ -113,7 +113,7 @@ export default function Contactus({ host, url }) {
                 <a href="https://www.sensesiot.com/" target="_blank" className="ml-3"><FontAwesomeIcon icon={['fas', 'pager']} fixedWidth style={{ width: "16px" }} /> SENSES</a>
               </p>
             </Col>
-            <Col id="PrinceBot">
+            <Col id="PrinceBot" sm={true} className="mb-5">
               <img src="/images/PrinceBot_logo_200x200.png" alt="PrinceBot logo" className="mb-3" />
               <div className="h4">PrinceBot</div>
               <p>ผลิตและจัดจำหน่ายหุ่นยนต์เพื่อการศึกษา มีส่วนร่วมในโครงการ microBlock ด้านการทดสอบ ให้คำแนะนำการพัฒนาโปรแกรม และอื่น ๆ</p>
@@ -121,7 +121,7 @@ export default function Contactus({ host, url }) {
                 <a href="https://www.facebook.com/PrinceBot-326418591174060" target="_blank"><FontAwesomeIcon icon={['fab', 'facebook-square']} fixedWidth style={{ width: "16px" }} /> PrinceBot</a>
               </p>
             </Col>
-            <Col id="LamLoei">
+            <Col id="LamLoei" sm={true} className="mb-5">
               <img src="/images/LamLoei_logo_200x200.png" alt="LamLoei logo" className="mb-3" />
               <div className="h4">LamLoei</div>
               <p>ให้บริการออกแบบแผงวงจรอิเล็กทรอนิกส์ มีส่วนร่วมในโครงการ microBlock ด้านการทดสอบ ให้คำแนะนำการพัฒนาโปรแกรม และอื่น ๆ</p>

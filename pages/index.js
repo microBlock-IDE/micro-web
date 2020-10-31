@@ -89,15 +89,15 @@ export default function Home({ host, url }) {
       }
 
       .thanks-box img {
-        height: 80px;
+        max-height: 80px;
       }
       `}</style>
 
       <Layout>
         <section className="bg-light text-center">
-          <div className="container pt-5">
+          <div className="container">
             <Row style={{ alignItems: "center" }}>
-              <Col>
+              <Col lg={true} className="mt-5">
                 <h1 className="h1 mb-3">microBlock IDE</h1>
                 <p className="lead mb-3">เขียนโปรแกรมบอร์ด KidBright ด้วยบล็อกและไพทอน</p>
                 <div className="mt-3">
@@ -105,7 +105,7 @@ export default function Home({ host, url }) {
                   <Link href="https://ide.microblock.app/" passHref><Button variant="light" size="lg" href="https://ide.microblock.app/">ใช้งานออนไลน์</Button></Link>
                 </div>
               </Col>
-              <Col xs={7}>
+              <Col lg={7} className="mt-5">
                 <img src="/images/banner.png" alt="microBlock IDE" />
               </Col>
             </Row>
@@ -119,56 +119,72 @@ export default function Home({ host, url }) {
           <div className="container pt-5 pb-5 text-center" style={{
             marginTop: "-140px"
           }}>
-            <Row className="mb-4">
-              <Col>
-                <CardBox 
-                  title="เขียนโปรแกรมโดยไม่ต้องพิมพ์" 
-                  text="ลากวางบล็อกคล้ายการต่อจิกซอเพื่อเขียนโปรแกรมสั่งงานบอร์ด KidBright" 
-                  icon={['fas', 'shapes']} />
+            <Row>
+              <Col lg={true}>
+                <Row>
+                  <Col sm={true} className="mb-4">
+                    <CardBox 
+                      title="เขียนโปรแกรมโดยไม่ต้องพิมพ์" 
+                      text="ลากวางบล็อกคล้ายการต่อจิกซอเพื่อเขียนโปรแกรมสั่งงานบอร์ด KidBright" 
+                      icon={['fas', 'shapes']} />
+                  </Col>
+                  <Col sm={true} className="mb-4">
+                    <CardBox 
+                      title="เขียนโปรแกรมสั่งงานด้วยไพทอน" 
+                      text="ทำน้อย ได้มาก ประยุกต์ได้มากกว่าด้วยภาษาไพทอน (MicroPython)" 
+                      icon={['fab', 'python']} />
+                  </Col>
+                </Row>
               </Col>
-              <Col>
-                <CardBox 
-                  title="เขียนโปรแกรมสั่งงานด้วยไพทอน" 
-                  text="ทำน้อย ได้มาก ประยุกต์ได้มากกว่าด้วยภาษาไพทอน (MicroPython)" 
-                  icon={['fab', 'python']} />
-              </Col>
-              <Col>
-                <CardBox 
-                  title="ให้ความสำคัญกับอัลกอริทึม" 
-                  text="เขียนโปรแกรมด้วยบล็อก เน้นการคิดอย่างเป็นระบบมากกว่ารูปแบบภาษา" 
-                  icon={['fas', 'braille']} />
-              </Col>
-              <Col>
-                <CardBox 
-                  title="อัพโหลดโปรแกรมเพียง 2 วินาที" 
-                  text="รู้ผลการทำงานของโปรแกรมได้อย่างรวดเร็ว ด้วยเวลาอัพโหลดเพียง 2 วินาที" 
-                  icon={['fas', 'fighter-jet']} />
+              <Col lg={true}>
+                <Row>
+                  <Col sm={true} className="mb-4">
+                    <CardBox 
+                      title="ให้ความสำคัญกับอัลกอริทึม" 
+                      text="เขียนโปรแกรมด้วยบล็อก เน้นการคิดอย่างเป็นระบบมากกว่ารูปแบบภาษา" 
+                      icon={['fas', 'braille']} />
+                  </Col>
+                  <Col sm={true} className="mb-4">
+                    <CardBox 
+                      title="อัพโหลดโปรแกรมเพียง 2 วินาที" 
+                      text="รู้ผลการทำงานของโปรแกรมได้อย่างรวดเร็ว ด้วยเวลาอัพโหลดเพียง 2 วินาที" 
+                      icon={['fas', 'fighter-jet']} />
+                  </Col>
+                </Row>
               </Col>
             </Row>
             <Row>
-              <Col>
-                <CardBox 
-                  title="ใช้ได้กับ KidBright ทุกเวอร์ชั่น" 
-                  text="ไม่ว่าคุณจะมีบอร์ด KidBright32 เวอร์ชั่นใด เรารองรับทุกฟีเจอร์ของทุกบอร์ด" 
-                  icon={['fas', 'microchip']} />
+              <Col lg={true}>
+                <Row>
+                  <Col sm={true} className="mb-4">
+                    <CardBox 
+                      title="ใช้ได้กับ KidBright ทุกเวอร์ชั่น" 
+                      text="ไม่ว่าคุณจะมีบอร์ด KidBright32 เวอร์ชั่นใด เรารองรับทุกฟีเจอร์ของทุกบอร์ด" 
+                      icon={['fas', 'microchip']} />
+                  </Col>
+                  <Col sm={true} className="mb-4">
+                    <CardBox 
+                      title="เพิ่มบล็อกด้วย Extension" 
+                      text="ทำลายทุกข้อจำกัดของโปรแกรมด้วย Extension ดาวน์โหลดบล็อกเพิ่มได้ตลอดเวลา" 
+                      icon={['fas', 'boxes']} />
+                  </Col>
+                </Row>
               </Col>
-              <Col>
-                <CardBox 
-                  title="เพิ่มบล็อกด้วย Extension" 
-                  text="ทำลายทุกข้อจำกัดของโปรแกรมด้วย Extension ดาวน์โหลดบล็อกเพิ่มได้ตลอดเวลา" 
-                  icon={['fas', 'boxes']} />
-              </Col>
-              <Col>
-                <CardBox 
-                  title="ใช้งานได้ฟรี" 
-                  text={<>ใช้งานได้ฟรีไม่มีเงื่อนไข เพราะเราอยู่ได้ด้วยการ<Link href="/support">สมัครใจสนับสนุน</Link></>}
-                  icon={['fas', 'hand-holding-usd']} />
-              </Col>
-              <Col>
-                <CardBox 
-                  title="โอเพนซอร์ซทุกส่วน" 
-                  text="เราตระหนักดีถึงความสำคัญของโอเพนซอร์ซ เพราะเราเชื่อว่าโอเพนซอร์ซจะช่วยสร้างซอฟแวร์ที่ดีได้" 
-                  icon={['fab', 'osi']} />
+              <Col lg={true}>
+                <Row>
+                  <Col sm={true} className="mb-4">
+                    <CardBox 
+                      title="ใช้งานได้ฟรี" 
+                      text={<>ใช้งานได้ฟรีไม่มีเงื่อนไข เพราะเราอยู่ได้ด้วยการ<Link href="/support">สมัครใจสนับสนุน</Link></>}
+                      icon={['fas', 'hand-holding-usd']} />
+                  </Col>
+                  <Col sm={true} className="mb-4">
+                    <CardBox 
+                      title="โอเพนซอร์ซทุกส่วน" 
+                      text="เราตระหนักดีถึงความสำคัญของโอเพนซอร์ซ เพราะเราเชื่อว่าโอเพนซอร์ซจะช่วยสร้างซอฟแวร์ที่ดีได้" 
+                      icon={['fab', 'osi']} />
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </div>
@@ -181,14 +197,14 @@ export default function Home({ host, url }) {
             </div>
             <div className="ber-cut"></div>
             <Row className="mt-5 mb-3">
-              <Col>
+              <Col lg={true}>
                 <div className="mb-3">
                   <img src="/images/KidBright32-V1.3-1.4.png" alt="KidBright32 V1.3" />
                 </div>
                 <p className="h5">KidBright32 V1.3 &amp; V1.4</p>
                 <p>บอร์ด KidBright32 เวอร์ชั่นถูกผลิตขึ้นมามากกว่า 2 แสนบอร์ด แจกให้กับสถานศึกษาทั่วประเทศ</p>
               </Col>
-              <Col>
+              <Col lg={true}>
                 <div className="mb-3">
                   <img src="/images/KidBright32-V1.5-Rev.3.png" alt="KidBright32 V1.5 Rev.3" />
                 </div>
@@ -197,14 +213,14 @@ export default function Home({ host, url }) {
               </Col>
             </Row>
             <Row className="mb-5">
-              <Col>
+              <Col lg={true}>
                 <div className="mb-3">
                   <img src="/images/KidBright32i.png" alt="KidBright32i" />
                 </div>  
                 <p className="h5">KidBright32i</p>
                 <p>บอร์ด KidBright32 รุ่นเพิ่มเซ็นเซอร์วัดความเร่งและเข็มทิศจาก INEX</p>
               </Col>
-              <Col>
+              <Col lg={true}>
                 <div className="mb-3">
                   <img src="/images/KidBright32-V1.6.png" alt="KidBright32 V1.6 by Gravitech" />
                 </div>
@@ -221,12 +237,25 @@ export default function Home({ host, url }) {
               <p className="lead mb-4">พาร์ทเนอร์ช่วยให้โครงการ microBlock ดำเนินการได้</p>
             </div>
             <div className="ber-cut"></div>
-            <Row className="mb-5 mt-4">
-              <div className="col"><Link href="/contactus#INEX" passHref><a><img src="/images/INEX_logo_200x200.png" alt="INEX logo" /></a></Link></div>
-              <div className="col"><Link href="/contactus#Gravitech" passHref><a><img src="/images/Gravitech_logo_200x200.png" alt="Gravitech logo" /></a></Link></div>
-              <div className="col"><Link href="/contactus#Senses" passHref><a><img src="/images/Senses_logo_200x200.png" alt="Senses IoT logo" /></a></Link></div>
-              <div className="col"><Link href="/contactus#PrinceBot" passHref><a><img src="/images/PrinceBot_logo_200x200.png" alt="PrinceBot logo" /></a></Link></div>
-              <div className="col"><Link href="/contactus#LamLoei" passHref><a><img src="/images/LamLoei_logo_200x200.png" alt="LamLoei logo" /></a></Link></div>
+            <Row className="mt-4">
+              <Col lg={true}>
+                <Row>
+                  <Col className="mb-5" xs={true}><Link href="/contactus#INEX" passHref><a><img src="/images/INEX_logo_200x200.png" alt="INEX logo" /></a></Link></Col>
+                  <Col className="mb-5" xs={true}><Link href="/contactus#Gravitech" passHref><a><img src="/images/Gravitech_logo_200x200.png" alt="Gravitech logo" /></a></Link></Col>
+                </Row>
+              </Col>
+              <Col lg={true}>
+                <Row>
+                  <Col className="mb-5" xs={true}><Link href="/contactus#Senses" passHref><a><img src="/images/Senses_logo_200x200.png" alt="Senses IoT logo" /></a></Link></Col>
+                  <Col className="mb-5" xs={true}><Link href="/contactus#PrinceBot" passHref><a><img src="/images/PrinceBot_logo_200x200.png" alt="PrinceBot logo" /></a></Link></Col>
+                </Row>
+              </Col>
+              <Col lg={true}>
+                <Row>
+                  <Col className="mb-5" xs={true}><Link href="/contactus#LamLoei" passHref><a><img src="/images/LamLoei_logo_200x200.png" alt="LamLoei logo" /></a></Link></Col>
+                  <Col className="mb-5" xs={true}><Link href="/contactus" passHref><a><img src="/images/IOXhop_logo_200x200.png" alt="IOXhop logo" /></a></Link></Col>
+                </Row>
+              </Col>
             </Row>
           </div>
         </section>
