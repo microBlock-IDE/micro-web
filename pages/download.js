@@ -27,13 +27,19 @@ export default function Download({ host, url }) {
       </Head>
 
       <style jsx>{`
-      * {
-        box-sizing: border-box;
+      .box-link-download {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 10px;
+        z-index: 10;
+        border-radius: 8px;
+        padding-top: 30px;
+        padding-bottom: 30px;
       }
 
-      img {
-        max-width: 100%;
-        height: auto;
+      @media screen and (min-width: 992px) {
+        .box-link-download {
+          margin-left: -100px;
+          padding-left: 100px;
+        }
       }
       `}</style>
 
@@ -43,10 +49,10 @@ export default function Download({ host, url }) {
           <p className="lead mb-3">ดาวน์โหลดโปรแกรม/เครื่องมือต่าง ๆ ที่จัดทำโดย microBlock IDE</p>
         </section>
         <section className="container mb-5">
-          <div className="row mb-5" style={{
+          <div className="row" style={{
             alignItems: "center"
           }}>
-            <div className="col" style={{
+            <div className="col-lg mb-5" style={{
               zIndex: 15
             }}>
               <img src="/images/microBlock-screen.png" alt="microBlock IDE V2.0.0" style={{
@@ -54,15 +60,7 @@ export default function Download({ host, url }) {
                 boxShadow: "rgba(0, 0, 0, 0.3) 0px 3px 10px",
               }} />
             </div>
-            <div className="col bg-light" style={{
-              marginLeft: "-100px",
-              paddingLeft: "100px",
-              boxShadow: "rgba(0, 0, 0, 0.3) 0px 3px 10px",
-              zIndex: 10,
-              borderRadius: "8px",
-              paddingTop: "30px",
-              paddingBottom: "30px"
-            }}>
+            <div className="col-lg bg-light box-link-download mb-5">
               <h3>microBlock IDE V2.0.0 <Badge variant="success">ล่าสุด</Badge></h3>
               <p>เผยแพร่เมื่อ 1 พฤศจิกายน 2563 โดย microBlock</p>
               <ul style={{
@@ -85,7 +83,7 @@ export default function Download({ host, url }) {
             borderLeft: "#28B463 6px solid"
           }}>
             <Row>
-              <Col md="auto">
+              <Col xs="auto">
                 <FontAwesomeIcon icon={[ 'fas', 'search' ]} fixedWidth style={{ width: 60 }} />
               </Col>
               <Col>
@@ -95,10 +93,12 @@ export default function Download({ host, url }) {
             </Row>
           </div>
         </section>
-        <section className="container mb-5">
+        <section className="container">
           <Row>
-            <Col>
-              <img src="/images/MicroUploader-V2.0.0.jpg" alt="MicroUploader" style={{ maxHeight: 300 }} />
+            <Col lg={true} className="mb-5">
+              <div className="mb-3">
+                <img src="/images/MicroUploader-V2.0.0.jpg" alt="MicroUploader" style={{ maxHeight: 300 }} />
+              </div>
               <h4>MicroUploader V2.0.0</h4>
               <p>โปรแกรมอัพโหลดเฟิร์มแวร์ MicroPython สำหรับ ESP32</p>
               <ul>
@@ -108,8 +108,10 @@ export default function Download({ host, url }) {
               </ul>
               <p>ดูเวอร์ชั่นเก่าทั้งหมดได้ที่ <a href="https://github.com/microBlock-IDE/MicroUploader/releases" target="_blank">Releases · microBlock-IDE/MicroUploader</a></p>
             </Col>
-            <Col>
-              <img src="/images/Micropython-logo.svg.png" alt="MicroPython for KidBright" style={{ maxHeight: 300 }} />
+            <Col lg={true} className="mb-5">
+              <div className="mb-3">
+                <img src="/images/Micropython-logo.svg.png" alt="MicroPython for KidBright" style={{ maxHeight: 300 }} />
+              </div>
               <h4>MicroPython for KidBright32 V1.3.0</h4>
               <p>เฟิร์มแวร์ MicroPython สำหรับบอร์ด KidBright รองรับบอร์ด KidBright32 ทุกเวอร์ชั่น</p>
               <ul>

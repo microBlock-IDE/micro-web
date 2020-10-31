@@ -39,6 +39,30 @@ export default function Learn({ posts, host, url }) {
         <meta property="og:image" content={`https://${host}/images/facebook-share-image.png`} />
       </Head>
 
+      <style jsx>{`
+      .topic-list {
+        -webkit-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+      }
+
+      @media screen and (max-width: 992px) {
+        .topic-list {
+          -webkit-flex: 0 0 50%;
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
+      }
+
+      @media screen and (max-width: 576px) {
+        .topic-list {
+          -webkit-flex: 0 0 100%;
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+      }
+      `}</style>
+
       <Layout>
         <section className="bg-light text-center p-5 mb-5">
           <h1 className="h1 mb-3">ศูนย์การเรียนรู้</h1>
@@ -50,9 +74,9 @@ export default function Learn({ posts, host, url }) {
               <h2 className="mb-4">{category.name}</h2>
               <Row className="row-cols-4">
                 {posts.filter(post => post.categories.indexOf(category.id) >= 0).map(post => (
-                  <Col>
+                  <div className="col-lg topic-list" key={post.id}>
                     <TopicBox key={post.id} id={post.id} title={post.title.rendered} text={post.yoast.metadesc} cover={post.yoast["opengraph-image"]} category={category.name} />
-                  </Col>
+                  </div>
                 ))}
               </Row>
             </div>
