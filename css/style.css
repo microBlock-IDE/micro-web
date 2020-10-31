@@ -10,3 +10,18 @@ img {
 body {
   color: #212F3D;
 }
+
+figure {
+  width: auto!important;
+}
+
+figcaption {
+  text-align: center;
+  color: #6b6b6b;
+  font-size: 14px;
+  margin-top: 0.5em;
+}
+
+.wp-caption.aligncenter {
+  text-align: center;
+}
