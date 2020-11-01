@@ -2,7 +2,6 @@ import { Card } from 'react-bootstrap';
 import Link from 'next/link'
 
 export default function TopicBox(props) {
-
   return (
     <Link href={`/post/${props.id}/${encodeURI(props.title)}`} passHref>
       <a className="card-link">
