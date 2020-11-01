@@ -25,3 +25,22 @@ figcaption {
 .wp-caption.aligncenter {
   text-align: center;
 }
+
+a.card-link {
+  color: #212F3D;
+  text-decoration: none;
+}
+
+a.card-link:hover {
+  color: #212F3D;
+  text-decoration: none;
+}
+
+a.card-link > .card {
+  transition: 100mS transform, 100mS box-shadow;
+}
+
+a.card-link:hover > .card {
+  box-shadow: 0 5px 20px 0 rgb(0 0 0 / 22%);
+  transform: translateY(-10px);
+}

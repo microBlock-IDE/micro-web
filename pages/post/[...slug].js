@@ -54,10 +54,12 @@ export default function LearnPost({ post, posts, host, url }) {
               </ListGroup>
             </div>
             <Col>
-              <div className="mb-3">
-                <img src={post.yoast["opengraph-image"]} alt={post.title.rendered} />
+              <div className="border rounded p-3 mb-3">
+                <div className="mb-3">
+                  <img src={post.yoast["opengraph-image"]} alt={post.title.rendered} />
+                </div>
+                <article dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
               </div>
-              <article className="mb-3" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
               <div className="container mb-5">
                 <DisqusComments post={{ id: +post.id, title: post.title.rendered }} />
               </div>
@@ -72,7 +74,7 @@ export default function LearnPost({ post, posts, host, url }) {
 export async function getServerSideProps({ req, query }) {
   let id = query.slug[0];
 
-  let post = await fetch(`https://manager.microblock.app/wp-json/wp/v2/posts/${id}`);
+  let post = await fetch(`https://manager.microblock.app/wp-json/wp/v2/posts/${id}?per_page=100`);
   post = await post.json();
 
   let posts = await fetch(`https://manager.microblock.app/wp-json/wp/v2/posts?categories=${post.categories[0]}&_fields[]=id&_fields[]=title`);
