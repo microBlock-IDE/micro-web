@@ -66,7 +66,7 @@ export default function Blog({ posts, host, url }) {
 };
 
 export async function getServerSideProps({ req, query }) {
-  const res = await fetch("https://manager.microblock.app/wp-json/wp/v2/posts?categories=2&_fields[]=id&_fields[]=modified&_fields[]=title&_fields[]=categories&_fields[]=yoast.metadesc&_fields[]=yoast.opengraph-image");
+  const res = await fetch("https://manager.microblock.app/wp-json/wp/v2/posts?per_page=100&categories=2&_fields[]=id&_fields[]=modified&_fields[]=title&_fields[]=categories&_fields[]=yoast.metadesc&_fields[]=yoast.opengraph-image");
   const data = await res.json();
 
   return { props: { posts: data, host: req.headers.host, url: req.url } }
