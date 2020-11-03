@@ -2,12 +2,21 @@ import Head from 'next/head'
 import { Row, Col, Button } from 'react-bootstrap';
 import Layout from '../component/Layout.js';
 
-export default function Download() {
+export default function Support({ host, url }) {
   return (
     <>
       <Head>
         <title>สมัครใจสนับสนุนเรา - microBlock IDE</title>
         <link rel="icon" href="/favicon.ico" />
+
+        <meta name="description" content="โครงการ microBlock IDE อยู่ได้ด้วยแรงสนับสนุนจากทุกท่าน" />
+        <meta name="robots" content="index, follow" />
+
+        <meta property="og:url" content={`https://${host}${url}`} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content="สมัครใจสนับสนุนเรา" />
+        <meta property="og:description" content="โครงการ microBlock IDE อยู่ได้ด้วยแรงสนับสนุนจากทุกท่าน" />
+        <meta property="og:image" content={`https://${host}/images/we-needs-you-support.png`} />
       </Head>
 
       <Layout>
@@ -105,3 +114,7 @@ export default function Download() {
     </>
   );
 };
+
+export async function getServerSideProps({ req, query }) {
+  return { props: { host: req.headers.host, url: req.url } }
+}
