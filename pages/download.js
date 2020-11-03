@@ -99,12 +99,12 @@ export default function Download({ host, url }) {
               <div className="mb-3">
                 <img src="/images/MicroUploader-V2.0.0.jpg" alt="MicroUploader" style={{ maxHeight: 300 }} />
               </div>
-              <h4>MicroUploader V2.0.0</h4>
+              <h4>MicroUploader V2.1.0</h4>
               <p>โปรแกรมอัพโหลดเฟิร์มแวร์ MicroPython สำหรับ ESP32</p>
               <ul>
-                <li><a href="https://github.com/microBlock-IDE/MicroUploader/releases/download/V2.0.0/MicroUploader.V2.0.0.windows.x64.zip">ดาวน์โหลดโปรแกรมสำหรับ Windows 64 บิต</a></li>
-                <li><a href="https://github.com/microBlock-IDE/MicroUploader/releases/download/V2.0.0/MicroUploader.V2.0.0.macOS.zip">ดาวน์โหลดโปรแกรมสำหรับ macOS</a></li>
-                <li><a href="https://github.com/microBlock-IDE/MicroUploader/releases/download/V2.0.0/MicroUploader.V2.0.0.ubuntu.x64.zip">ดาวน์โหลดโปรแกรมสำหรับ Ubuntu 64 บิต</a></li>
+                <li><a href="https://github.com/microBlock-IDE/MicroUploader/releases/download/V2.1.0/MicroUploader.V2.1.0.windows.x64.zip">ดาวน์โหลดโปรแกรมสำหรับ Windows 64 บิต</a></li>
+                <li><a href="https://github.com/microBlock-IDE/MicroUploader/releases/download/V2.1.0/MicroUploader.V2.1.0.macOS.zip">ดาวน์โหลดโปรแกรมสำหรับ macOS</a></li>
+                <li><a href="https://github.com/microBlock-IDE/MicroUploader/releases/download/V2.1.0/MicroUploader.V2.1.0.ubuntu.x64.zip">ดาวน์โหลดโปรแกรมสำหรับ Ubuntu 64 บิต</a></li>
               </ul>
               <p>ดูเวอร์ชั่นเก่าทั้งหมดได้ที่ <a href="https://github.com/microBlock-IDE/MicroUploader/releases" target="_blank">Releases · microBlock-IDE/MicroUploader</a></p>
             </Col>
