@@ -37,10 +37,25 @@ a.card-link:hover {
 }
 
 a.card-link > .card {
-  transition: 100mS transform, 100mS box-shadow;
+  /* transition: 100mS transform, 100mS box-shadow; */
+  transition: 100mS border-color;
+  overflow: hidden;
 }
 
 a.card-link:hover > .card {
-  box-shadow: 0 5px 20px 0 rgb(0 0 0 / 22%);
-  transform: translateY(-10px);
+  /* box-shadow: 0 5px 20px 0 rgb(0 0 0 / 22%);
+  transform: translateY(-10px); */
+  border-color: #007bff;
+}
+
+a.card-link > .card > .microBlock-embed .blocklyMainBackground {
+  stroke: none;
+}
+
+a.card-link > .card > .microBlock-embed {
+  border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+a.card-link:hover > .card > .microBlock-embed {
+  border-color: #007bff;
 }
