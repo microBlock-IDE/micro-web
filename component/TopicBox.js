@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function TopicBox(props) {
   return (
-    <Link href={`/post/${props.id}/${encodeURI(props.title)}`} passHref>
+    <Link href={`/post/${props.id}/${encodeURIComponent(props.title)}`} passHref>
       <a className="card-link">
         <Card className="mb-3">
           <Card.Img variant="top" src={props.cover} />

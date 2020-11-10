@@ -1,7 +1,9 @@
 import Head from 'next/head'
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Card } from 'react-bootstrap';
 import Layout from '../component/Layout.js';
 import TopicBox from '../component/TopicBox.js';
+import referenceData from '../docs/reference.js'
+import Link from 'next/link'
 
 export default function Learn({ posts, host, url }) {
   let categorys = [
@@ -81,6 +83,26 @@ export default function Learn({ posts, host, url }) {
               </Row>
             </div>
           ))}
+          <div className="container mb-5">
+            <h2 className="mb-4">Code Reference</h2>
+            <Row className="row-cols-6">
+              {referenceData.map(category => (
+                <div className="col-sm-2" key={category.name}>
+                  <Link href={`/reference/${encodeURIComponent(category.name)}`} passHref>
+                    <a className="card-link">
+                      <Card className="mb-3">
+                        <Card.Img variant="top" src={category.icon} className="p-4" />
+                        <Card.Body>
+                          <Card.Title className="card-title" dangerouslySetInnerHTML={{ __html: category.name }}></Card.Title>
+                          <Card.Text className="card-text"><span dangerouslySetInnerHTML={{ __html: category.description }}></span></Card.Text>
+                        </Card.Body>
+                      </Card>
+                    </a>
+                  </Link>
+                </div>
+              ))}
+            </Row>
+          </div>
         </section>
       </Layout>
     </>
