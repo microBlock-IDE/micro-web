@@ -48,11 +48,31 @@ export default function Learn({ posts, host, url }) {
         max-width: 25%;
       }
 
+      .reference-list {
+        -webkit-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+      }
+
       @media screen and (max-width: 992px) {
         .topic-list {
           -webkit-flex: 0 0 50%;
           flex: 0 0 50%;
           max-width: 50%;
+        }
+
+        .reference-list {
+          -webkit-flex: 0 0 25%;
+          flex: 0 0 25%;
+          max-width: 25%;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .reference-list {
+          -webkit-flex: 0 0 33.2%;
+          flex: 0 0 33.2%;
+          max-width: 33.2%;
         }
       }
 
@@ -61,6 +81,12 @@ export default function Learn({ posts, host, url }) {
           -webkit-flex: 0 0 100%;
           flex: 0 0 100%;
           max-width: 100%;
+        }
+
+        .reference-list {
+          -webkit-flex: 0 0 50%;
+          flex: 0 0 50%;
+          max-width: 50%;
         }
       }
       `}</style>
@@ -85,9 +111,9 @@ export default function Learn({ posts, host, url }) {
           ))}
           <div className="container mb-5">
             <h2 className="mb-4">Code Reference</h2>
-            <Row className="row-cols-6">
+            <Row>
               {referenceData.map(category => (
-                <div className="col-sm-2" key={category.name}>
+                <div className="col-sm-2 reference-list" key={category.name}>
                   <Link href={`/reference/${encodeURIComponent(category.name)}`} passHref>
                     <a className="card-link">
                       <Card className="mb-3">
