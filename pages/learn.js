@@ -16,6 +16,10 @@ export default function Learn({ posts, host, url }) {
       name: "บทความการใช้งาน"
     },
     {
+      id: 7,
+      name: "อุปกรณ์เสริม"
+    },
+    {
       id: 4,
       name: "วีดีโอ"
     },
