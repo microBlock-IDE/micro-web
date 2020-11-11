@@ -158,7 +158,7 @@ export default function LearnPost({ slug, host, url }) {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`Code Reference > ${category.name}${blockName ? ` > ${blockName}` : ""} - microBlock IDE`} />
         <meta property="og:description" content={blockName ? block.description : category.description} />
-        <meta property="og:image" content={category.icon} />
+        <meta property="og:image" content={`https://${host}/images/code-reference-banner.png`} />
       </Head>
 
       <style jsx>{`
