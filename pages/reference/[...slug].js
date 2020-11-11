@@ -124,9 +124,9 @@ export default function LearnPost({ slug, host, url }) {
     );
   } else {
     pageContent = (
-      <div className="row row-cols-4">
+      <div className="row">
         {category.blocks.map(block => (
-          <div className="col-md-3" key={block.name}>
+          <div className="col-lg-3" key={block.name}>
             <Link href={`/reference/${encodeURIComponent(categoryName)}/${encodeURIComponent(block.name)}`} passHref>
               <a className="card-link">
                 <Card className="mb-3">
@@ -158,7 +158,7 @@ export default function LearnPost({ slug, host, url }) {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={`Code Reference > ${category.name}${blockName ? ` > ${blockName}` : ""} - microBlock IDE`} />
         <meta property="og:description" content={blockName ? block.description : category.description} />
-        <meta property="og:image" content={category.icon} />
+        <meta property="og:image" content={`https://${host}/images/code-reference-banner.png`} />
       </Head>
 
       <style jsx>{`
@@ -206,7 +206,7 @@ export default function LearnPost({ slug, host, url }) {
         </section>
         <section className="container mb-3 main-container">
           <div className="row">
-            <div className="col-sm-auto">
+            <div className="col-auto">
               <ul className="category-list">
                 {referenceData.map(category => (
                   <li className={category.name === categoryName ? "active" : ""} key={category.name}>
@@ -220,7 +220,7 @@ export default function LearnPost({ slug, host, url }) {
                 ))}
               </ul>
             </div>
-            <div className="col">
+            <div className="col" style={{ overflow: "hidden" }}>
               {pageContent}
             </div>
           </div>

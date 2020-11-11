@@ -732,7 +732,7 @@ export default ([
             {
                 id: "imu_update",
                 name: "IMU update",
-                description: "อัพเดทค่าที่วัดได้จากเซ็นเซอร์ IMU (เฉพาะ KidBright32i/KidBright32 V1.6 by Gravitech",
+                description: "อัพเดทค่าที่วัดได้จากเซ็นเซอร์ IMU (เฉพาะ KidBright32i/KidBright32 V1.6 by Gravitech)",
                 python: {
                     header: "import imu",
                     pattern: "imu.update()"
@@ -778,7 +778,7 @@ export default ([
             {
                 id: "imu_is_gesture",
                 name: "is ... gesture",
-                description: "ตรวจสอบว่ากำลังเกิดเหตุการณ์ที่กำหนดหรือไม่ (เฉพาะ KidBright32i/KidBright32 V1.6 by Gravitech",
+                description: "ตรวจสอบว่ากำลังเกิดเหตุการณ์ที่กำหนดหรือไม่ (เฉพาะ KidBright32i/KidBright32 V1.6 by Gravitech)",
                 python: {
                     header: "import imu",
                     pattern: "imu.is_gesture(event)"
@@ -908,7 +908,7 @@ export default ([
             {
                 id: "imu_acceleration",
                 name: "acceleration (mg)",
-                description: "อ่านค่าความเร่งที่วัดได้จากเซ็นเซอร์ IMU แกนที่กำหนด (เฉพาะ KidBright32i/KidBright32 V1.6 by Gravitech",
+                description: "อ่านค่าความเร่งที่วัดได้จากเซ็นเซอร์ IMU แกนที่กำหนด (เฉพาะ KidBright32i/KidBright32 V1.6 by Gravitech)",
                 python: {
                     header: "import imu",
                     pattern: "imu.acc[axis]"
@@ -987,7 +987,7 @@ export default ([
             {
                 id: "imu_rotation",
                 name: "rotation (°)",
-                description: "อ่านค่าการเอียงบอร์ดตามแกนที่กำหนด (เฉพาะ KidBright32i/KidBright32 V1.6 by Gravitech",
+                description: "อ่านค่าการเอียงบอร์ดตามแกนที่กำหนด (เฉพาะ KidBright32i/KidBright32 V1.6 by Gravitech)",
                 python: {
                     header: "import imu",
                     pattern: "imu.rotation()[axis]"
