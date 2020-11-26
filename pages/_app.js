@@ -1,6 +1,7 @@
 import NextNprogress from 'nextjs-progressbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/style.css';
+import '../css/prism.css';
 
 export default function MyApp({ Component, pageProps }) {
   return (

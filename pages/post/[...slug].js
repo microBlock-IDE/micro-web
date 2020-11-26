@@ -4,8 +4,16 @@ import Link from 'next/link'
 import Layout from '../../component/Layout.js';
 import DisqusComments from '../../component/DisqusComments.js'
 import AddThis from '../../component/AddThis.js'
+import React, { useEffect } from 'react';
+import Script from 'react-load-script';
 
 export default function LearnPost({ post, posts, host, url }) {
+  useEffect(() => {
+    if (window.Prism) {
+      window.Prism.highlightAll();
+    }
+  }, [ url ]);
+
   return (
     <>
       <Head>
@@ -53,12 +61,15 @@ export default function LearnPost({ post, posts, host, url }) {
                 ))}
               </ListGroup>
             </div>
-            <Col>
+            <Col style={{ overflow: "hidden" }}>
               <div className="border rounded p-3 mb-3">
                 <div className="mb-3">
                   <img src={post.yoast["opengraph-image"]} alt={post.title.rendered} />
                 </div>
                 <article dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+                <Script
+                  url="/prism.js"
+                  onLoad={() => window.Prism.highlightAll()} />
               </div>
               <div className="container mb-5">
                 <DisqusComments post={{ id: +post.id, title: post.title.rendered }} />
