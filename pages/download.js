@@ -61,17 +61,17 @@ export default function Download({ host, url }) {
               }} />
             </div>
             <div className="col-lg bg-light box-link-download mb-5">
-              <h3>microBlock IDE V2.0.0 <Badge variant="success">ล่าสุด</Badge></h3>
-              <p>เผยแพร่เมื่อ 1 พฤศจิกายน 2563 โดย microBlock</p>
+              <h3>microBlock IDE V2.1.0 <Badge variant="success">ล่าสุด</Badge></h3>
+              <p>เผยแพร่เมื่อ 1 ธันวาคม 2563 โดย microBlock</p>
               <ul style={{
                 marginBottom: 0
               }}>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.win.x86.msi">ดาวน์โหลดไฟล์ติดตั้งสำหรับ Windows 32 บิต</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.win.x86.portable.zip">ดาวน์โหลดโปรแกรมสำหรับ Windows 32 บิต (ไม่ต้องติดตั้ง)</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.win.x86-64.msi">ดาวน์โหลดไฟล์ติดตั้งโปรแกรมสำหรับ Windows 64 บิต</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.win.x86-64.portable.zip">ดาวน์โหลดโปรแกรมสำหรับ Windows 64 บิต (ไม่ต้องติดตั้ง)</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.macos.x86-64.dmg">ดาวน์โหลดโปรแกรมสำหรับ macOS</a></li>
-                <li><a href="https://github.com/microBlock-IDE/microBlock-IDE-offline/releases/download/V2.0.0/microBlock.IDE.V2.0.0.ubuntu.x86-64.AppImage">ดาวน์โหลดโปรแกรมสำหรับ Ubuntu 64 บิต (ไม่ต้องติดตั้ง)</a></li>
+                <li><a href="https://bit.ly/37jOfgw">ดาวน์โหลดไฟล์ติดตั้งสำหรับ Windows 32 บิต</a></li>
+                <li><a href="https://bit.ly/39vcUBl">ดาวน์โหลดโปรแกรมสำหรับ Windows 32 บิต (ไม่ต้องติดตั้ง)</a></li>
+                <li><a href="https://bit.ly/37n9Nsx">ดาวน์โหลดไฟล์ติดตั้งโปรแกรมสำหรับ Windows 64 บิต</a></li>
+                <li><a href="https://bit.ly/39vpalI">ดาวน์โหลดโปรแกรมสำหรับ Windows 64 บิต (ไม่ต้องติดตั้ง)</a></li>
+                <li><a href="https://bit.ly/3loF1Vq">ดาวน์โหลดโปรแกรมสำหรับ macOS</a></li>
+                <li><a href="https://bit.ly/3o3OnHI">ดาวน์โหลดโปรแกรมสำหรับ Ubuntu 64 บิต (ไม่ต้องติดตั้ง)</a></li>
               </ul>
             </div>
           </div>
@@ -112,10 +112,10 @@ export default function Download({ host, url }) {
               <div className="mb-3">
                 <img src="/images/Micropython-logo.svg.png" alt="MicroPython for KidBright" style={{ maxHeight: 300 }} />
               </div>
-              <h4>MicroPython for KidBright32 V1.3.0</h4>
+              <h4>MicroPython for KidBright32 V1.4.0</h4>
               <p>เฟิร์มแวร์ MicroPython สำหรับบอร์ด KidBright รองรับบอร์ด KidBright32 ทุกเวอร์ชั่น</p>
               <ul>
-                <li><a href="https://github.com/microBlock-IDE/micropython/releases/download/V1.3.0-beta-2/MicroPython.for.KidBright32.V1.3.0-beta-2.bin">MicroPython.for.KidBright32.V1.3.0-beta-2.bin</a></li>
+                <li><a href="https://bit.ly/2KQzrON">MicroPython.for.KidBright32.V1.4.0.bin</a></li>
               </ul>
               <p>ดูเวอร์ชั่นเก่าทั้งหมดได้ที่ <a href="https://github.com/microBlock-IDE/micropython/releases" target="_blank">Releases · microBlock-IDE/micropython</a></p>
             </Col>
