@@ -103,6 +103,26 @@ export default function Contactus({ host, url }) {
               </ul>
             </Col>
           </Row>
+          <Row className="mb-5" id="NPS">
+            <Col className="border-right" md="auto">
+              <img src="/images/NPS-logo.png" alt="NPS Robotics Computer logo" />
+            </Col>
+            <Col>
+              <div className="h3">NPS Robotics Computer</div>
+              <p>ศูนย์พัฒนาเด็กเพื่อเป็นโปรแกรมเมอร์-วิศวกรคอมพิวเตอร์ จังหวัดระยอง -- มีส่วนร่วมในโครงการ microBlock ด้านการนำโปรแกรม microBlock IDE ไปใช้สอน อบรม ให้กับนักเรียนในจังหวัดระยอง</p>
+              <p><strong>ช่องทางการติดต่อ</strong></p>
+              <ul>
+                <li>โทรศัพท์. 081 865 3479</li>
+                <li>Facebook. <a href="https://www.facebook.com/NPSProgrammerRayong" target="_blank">NPS Robotics Computer</a></li>
+                <li>เว็บไซต์. <a href="https://www.npsrobot.com/" target="_blank">NPS ROBOTICS COMPUTER</a></li>
+              </ul>
+              <p><strong>ตัวอย่างเคสที่ควรติดต่อ</strong></p>
+              <ul>
+                <li>สอบถามเกี่ยวกับการอบรม microBlock IDE ให้กับนักเรียน ม.1 - ม.6</li>
+                <li>สอบถามเกี่ยวกับการอบรมการสร้างหุ่นยนต์ การเขียนโปรแกรมเบื้องต้น ให้กับนักเรียน ม.1 - ม.6</li>
+              </ul>
+            </Col>
+          </Row>
           <Row className="text-center">
             <Col id="Senses" sm={true} className="mb-5">
               <img src="/images/Senses_logo_200x200.png" alt="Senses IoT logo" className="mb-3" />
