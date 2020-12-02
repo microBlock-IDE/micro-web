@@ -253,7 +253,7 @@ export default function Home({ host, url }) {
               <Col lg={true}>
                 <Row>
                   <Col className="mb-5" xs={true}><Link href="/contactus#LamLoei" passHref><a><img src="/images/LamLoei_logo_200x200.png" alt="LamLoei logo" /></a></Link></Col>
-                  <Col className="mb-5" xs={true}><Link href="/contactus" passHref><a><img src="/images/IOXhop_logo_200x200.png" alt="IOXhop logo" /></a></Link></Col>
+                  <Col className="mb-5" xs={true}><Link href="/contactus#NPS" passHref><a><img src="/images/NPS-logo.png" alt="NPS Robotics Computer logo" /></a></Link></Col>
                 </Row>
               </Col>
             </Row>
