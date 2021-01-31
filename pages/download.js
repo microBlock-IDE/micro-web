@@ -62,7 +62,7 @@ export default function Download({ host, url }) {
             </div>
             <div className="col-lg bg-light box-link-download mb-5">
               <h3>microBlock IDE V2.3.0 <Badge variant="success">ล่าสุด</Badge></h3>
-              <p>เผยแพร่เมื่อ 1 กุมภาพันธ์ 2564 โดย microBlock</p>
+              <p>เผยแพร่เมื่อ 31 มกราคม 2564 โดย microBlock</p>
               <ul style={{
                 marginBottom: 0
               }}>
