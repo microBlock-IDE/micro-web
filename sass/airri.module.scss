@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap');
+
+.Container {
+    font-family: 'Prompt', sans-serif;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header {
+    background-color: #88dcf4;
+    padding-bottom: 120px;
+}
+
+.HeaderContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.TopLogo {
+    background-color: #FFF;
+    padding: 20px;
+    padding-top: 30px;
+    padding-bottom: 6px;
+    border-radius: 0 0 20px 20px;
+
+    & img {
+        max-height: 68px;
+        width: auto;
+    }
+}
+
+.HeaderText {
+    padding-left: 20px;
+
+    & > h1 {
+        font-size: 32px;
+    }
+
+    & > ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        margin: 0;
+
+        & > li {
+            padding: 0;
+            margin: 0;
+            margin-right: 60px;
+        }
+
+        & > li:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.section {
+    background-image: url('/images/2271.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.MapContainer {
+    border-radius: 26px;
+    background-color: #FFF;
+    height: calc(100vh - 160px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-100px);
+    overflow: hidden;
+}
+
+.footer {
+    background-color: #34495e;
+}
+
+.FooterContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 0;
+
+    & > div {
+        margin-right: 20px;
+        color: #FFF;
+        max-width: 25%;
+
+        & > h2 {
+            font-size: 20px;
+        }
+
+        & > p,
+        & > ul > li {
+            font-size: 14px;
+        }
+
+        & > p {
+            margin-bottom: 0;
+        }
+
+        & > ul {
+            padding: 0;
+            margin: 0;
+
+            & > li {
+                list-style: none;
+                margin-bottom: 10px;
+                
+                & > a {
+                    color: #FFF;
+                    text-decoration: none;
+                    display: inline-block;
+                    border-bottom: 1px transparent dashed;
+                    transition: 300ms all;
+                }
+
+                & > a:hover {
+                    border-bottom: 1px #FFF dashed;
+                    transform: translateX(10px);
+                }
+            }
+        }
+    }
+}
+
+.FooterLogo {
+    & img {
+        max-height: 120px;
+    }
+}
+
+.FinalFooter {
+    text-align: center;
+    background-color: #212f3d;
+    font-size: 12px;
+    padding: 10px;
+    color: #FFF;
+
+    & a {
+        color: #FFF;
+    }
+}
