@@ -14,7 +14,9 @@ import styles from '../sass/airri.module.scss';
 
 export default function AirriPage({ host, url, devices, dataReportCount }) {
     const initMap = () => {
-        for (const device in devices) {
+        for (const device of devices) {
+            const location = device.location.split(",").map(a => a.trim());
+
             const canvas = document.createElement("canvas");
             canvas.width = 100;
             canvas.height = 100;
@@ -31,11 +33,13 @@ export default function AirriPage({ host, url, devices, dataReportCount }) {
             ctx.textAlign = "center";
             ctx.fillStyle = "#FFFFFF";
             ctx.font = "34px sans-serif";
-            ctx.fillText(125, (canvas.width / 2), (canvas.height / 2));
+            ctx.fillText(device?.aqi || "?", (canvas.width / 2), (canvas.height / 2));
 
             const localMarker = new longdo.Marker(
-                { lon: 99.35, lat: 14.25 },
-                {
+                { 
+                    lat: location?.[0], 
+                    lon: location?.[1] 
+                }, {
                     icon: {
                         url: canvas.toDataURL(),
                         offset: { 
@@ -55,6 +59,7 @@ export default function AirriPage({ host, url, devices, dataReportCount }) {
                         loadDetail: element => {
                             element.style.display = "flex";
                             element.style["flex-direction"] = "column";
+                            // element.innerHTML = devices.name;
                             // ReactDOM.render(<MakerPopup did={device.id} />, element);
                         },
                         size: { 
@@ -145,11 +150,36 @@ export default function AirriPage({ host, url, devices, dataReportCount }) {
     )
 }
 
+const {
+    POSTGRES_HOST,
+    POSTGRES_PORT,
+    POSTGRES_USERNAME,
+    POSTGRES_PASSWORD,
+    POSTGRES_DATABASE
+} = process.env;
+
+const { Client } = require('pg')
+
+
 export async function getServerSideProps({ req, query }) {
+    const client = new Client({
+        host: POSTGRES_HOST,
+        port: POSTGRES_PORT,
+        user: POSTGRES_USERNAME,
+        password: POSTGRES_PASSWORD,
+        database: POSTGRES_DATABASE,
+    });
+    client.connect();
+
+    const devices = await client.query('SELECT name, mac_address, location, aqi FROM public.devices WHERE devices.last_push >= NOW() - INTERVAL \'1 HOURS\'');
+    const systemInfo = await client.query('SELECT counter FROM system WHERE id = 1;');
+
+    client.end();
+
     return { 
         props: { 
-            devices: [ 1 ], 
-            dataReportCount: 10, 
+            devices: devices.rows, 
+            dataReportCount: systemInfo?.rows?.[0].counter || "?", 
             host: req.headers.host, 
             url: req.url 
         }
