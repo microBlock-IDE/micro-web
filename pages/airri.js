@@ -5,15 +5,164 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image'
 
-
 import { longdo, map, LongdoMap } from '../src/LongdoMap';
 
 import airriLogo from '../public/images/Airri_Logo.svg';
 
+import smileIcon from '../public/images/smile.svg';
+import smilingIcon from '../public/images/smiling.svg';
+import neutralIcon from '../public/images/neutral.svg';
+import sadIcon from '../public/images/sad.svg';
+import cryingIcon from '../public/images/crying.svg';
+import thermometerIcon from '../public/images/thermometer.svg';
+import humidityIcon from '../public/images/humidity.svg';
+import pressureIcon from '../public/images/pressure.svg';
+import dust2_5Icon from '../public/images/dust2.5.svg';
+import dust1_0Icon from '../public/images/dust1.0.svg';
+import dust10Icon from '../public/images/dust10.svg';
+import windSpeedIcon from '../public/images/anemometer.svg';
+import windDirectionIcon from '../public/images/wind-rose.svg';
+import lightIcon from '../public/images/sun.svg';
+import uvIcon from '../public/images/uv.svg';
+import rainIcon from '../public/images/raining.svg';
+import co2Icon from '../public/images/co2.svg';
+
 import styles from '../sass/airri.module.scss';
+
+const MakerPopup = ({ DeviceInfo }) => {
+    return (
+        <div className={styles.MakerPopupContainer}>
+            <div className={styles.MakerPopupOverviewBox}>
+                <div>
+                    <Image src={smileIcon} alt="Feel Icon" />
+                </div>
+                <div>
+                    <h1>อากาศดี</h1>
+                    <div>ดัชนีคุณภาพอากาศ (AQI): {DeviceInfo.aqi}</div>
+                </div>
+            </div>
+            <div className={styles.MakerPopupValueBoxList}>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={thermometerIcon} alt="thermometer icon" />
+                    </div>
+                    <div>
+                        <h2>อุณหภูมิ</h2>
+                        <div>123 °C</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={humidityIcon} alt="humidity icon" />
+                    </div>
+                    <div>
+                        <h2>ความชื้น</h2>
+                        <div>123 %RH</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={pressureIcon} alt="pressure icon" />
+                    </div>
+                    <div>
+                        <h2 style={{ fontSize: 10 }}>ความกดอากาศ</h2>
+                        <div>123 Pa</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={dust2_5Icon} alt="PM2.5 icon" />
+                    </div>
+                    <div>
+                        <h2>ฝุ่น PM2.5</h2>
+                        <div>123 ug</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={dust1_0Icon} alt="PM1.0 icon" />
+                    </div>
+                    <div>
+                        <h2>ฝุ่น PM1.0</h2>
+                        <div>123 ug</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={dust10Icon} alt="PM10 icon" />
+                    </div>
+                    <div>
+                        <h2>ฝุ่น PM10</h2>
+                        <div>123 ug</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={windSpeedIcon} alt="Wind Speed icon" />
+                    </div>
+                    <div>
+                        <h2 style={{ fontSize: 12 }}>ความเร็มลม</h2>
+                        <div>123 m/s</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={windDirectionIcon} alt="Wind Direction icon" />
+                    </div>
+                    <div>
+                        <h2>ทิศทางลม</h2>
+                        <div>123 °</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={lightIcon} alt="sun icon" />
+                    </div>
+                    <div>
+                        <h2>แสงสว่าง</h2>
+                        <div>10 lx</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={uvIcon} alt="UV index icon" />
+                    </div>
+                    <div>
+                        <h2>UV index</h2>
+                        <div>123</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={rainIcon} alt="sun icon" />
+                    </div>
+                    <div>
+                        <h2 style={{ fontSize: 12 }}>ปริมาณน้ำฝน</h2>
+                        <div>5 mm</div>
+                    </div>
+                </div>
+                <div className={styles.MakerPopupValueBox}>
+                    <div>
+                        <Image src={co2Icon} alt="UV index icon" />
+                    </div>
+                    <div>
+                        <h2>CO2</h2>
+                        <div>500 ug</div>
+                    </div>
+                </div>
+            </div>
+            <div className={styles.MakerPopupEndCredit}>
+                รายงานโดย <span>{DeviceInfo?.user_name || "ไม่รู้จัก"}</span> ∘ 
+                ข้อมูลเมื่อ 5 นาทีที่แล้ว
+            </div>
+        </div>
+    )
+};
 
 export default function AirriPage({ host, url, devices, dataReportCount }) {
     const initMap = () => {
+        map.Ui.Crosshair.visible(false);
+
         for (const device of devices) {
             const location = device.location.split(",").map(a => a.trim());
 
@@ -51,16 +200,15 @@ export default function AirriPage({ host, url, devices, dataReportCount }) {
                             height: 50,
                         }
                     },
-                    title: device?.name || "?",
+                    title: device?.device_name || "?",
                     weight: longdo.OverlayWeight.Top,
                     popup: {
-                        title: device?.name || "?",
+                        title: device?.device_name || "?",
                         detail: "",
                         loadDetail: element => {
                             element.style.display = "flex";
                             element.style["flex-direction"] = "column";
-                            // element.innerHTML = devices.name;
-                            // ReactDOM.render(<MakerPopup did={device.id} />, element);
+                            ReactDOM.render(<MakerPopup DeviceInfo={device} />, element);
                         },
                         size: { 
                             width: 320
@@ -150,28 +298,19 @@ export default function AirriPage({ host, url, devices, dataReportCount }) {
     )
 }
 
-const {
-    POSTGRES_HOST,
-    POSTGRES_PORT,
-    POSTGRES_USERNAME,
-    POSTGRES_PASSWORD,
-    POSTGRES_DATABASE
-} = process.env;
-
-const { Client } = require('pg')
-
+const { Client } = require('pg');
 
 export async function getServerSideProps({ req, query }) {
     const client = new Client({
-        host: POSTGRES_HOST,
-        port: POSTGRES_PORT,
-        user: POSTGRES_USERNAME,
-        password: POSTGRES_PASSWORD,
-        database: POSTGRES_DATABASE,
+        host: process.env.POSTGRES_HOST,
+        port: process.env.POSTGRES_PORT,
+        user: process.env.POSTGRES_USERNAME,
+        password: process.env.POSTGRES_PASSWORD,
+        database: process.env.POSTGRES_DATABASE,
     });
     client.connect();
 
-    const devices = await client.query('SELECT name, mac_address, location, aqi FROM public.devices WHERE devices.last_push >= NOW() - INTERVAL \'1 HOURS\'');
+    const devices = await client.query('SELECT users.name AS user_name, devices.name AS device_name, mac_address, location, aqi FROM public.devices INNER JOIN public.users ON devices.owner = users.id WHERE devices.last_push >= NOW() - INTERVAL \'1 HOURS\'');
     const systemInfo = await client.query('SELECT counter FROM system WHERE id = 1;');
 
     client.end();
