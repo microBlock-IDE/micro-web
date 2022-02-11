@@ -40,13 +40,14 @@ export default function Menu() {
           <Nav className="mr-auto">
             <ActiveLink href="/" activeClassName="active" passHref><Nav.Link>หน้าแรก</Nav.Link></ActiveLink>
             <ActiveLink href="/download" activeClassName="active" passHref><Nav.Link>ดาวน์โหลด</Nav.Link></ActiveLink>
+            <ActiveLink href="/extension" activeClassName="active" passHref><Nav.Link>ส่วนเสริม</Nav.Link></ActiveLink>
             <ActiveLink href="/learn" activeClassName="active" passHref><Nav.Link>ศูนย์การเรียนรู้</Nav.Link></ActiveLink>
             <ActiveLink href="/blog" activeClassName="active" passHref><Nav.Link>บล็อก</Nav.Link></ActiveLink>
             <ActiveLink href="/community" activeClassName="active" passHref><Nav.Link>ชุมชน</Nav.Link></ActiveLink>
             <ActiveLink href="/contactus" activeClassName="active" passHref><Nav.Link>ติดต่อเรา</Nav.Link></ActiveLink>
           </Nav>
           <Nav>
-            <Nav.Link href="https://github.com/microBlock-IDE/microBlock-IDE" target="_blank">Collaborate On <FontAwesomeIcon icon={['fab', 'github']} fixedWidth style={{ width: "16px" }} /></Nav.Link>
+            <Nav.Link href="https://github.com/microBlock-IDE" target="_blank">Collaborate On <FontAwesomeIcon icon={['fab', 'github']} fixedWidth style={{ width: "16px" }} /></Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </div>
