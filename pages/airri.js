@@ -9,8 +9,8 @@ import { longdo, map, LongdoMap } from '../src/LongdoMap';
 
 import airriLogo from '../public/images/Airri_Logo.svg';
 
-import smileIcon from '../public/images/smile.svg';
 import smilingIcon from '../public/images/smiling.svg';
+import smileIcon from '../public/images/smile.svg';
 import neutralIcon from '../public/images/neutral.svg';
 import sadIcon from '../public/images/sad.svg';
 import cryingIcon from '../public/images/crying.svg';
@@ -34,10 +34,10 @@ const MakerPopup = ({ DeviceInfo }) => {
         <div className={styles.MakerPopupContainer}>
             <div className={styles.MakerPopupOverviewBox}>
                 <div>
-                    <Image src={smileIcon} alt="Feel Icon" />
+                    <Image src={smilingIcon} alt="Feel Icon" />
                 </div>
                 <div>
-                    <h1>อากาศดี</h1>
+                    <h1 title="ไม่มีผลกระทบต่อสุขภาพ">อากาศดี</h1>
                     <div>ดัชนีคุณภาพอากาศ (AQI): {DeviceInfo.aqi}</div>
                 </div>
             </div>
@@ -147,7 +147,7 @@ const MakerPopup = ({ DeviceInfo }) => {
                     </div>
                     <div>
                         <h2>CO2</h2>
-                        <div>500 ug</div>
+                        <div>500 ppm</div>
                     </div>
                 </div>
             </div>
