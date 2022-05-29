@@ -44,6 +44,7 @@ export default function Menu() {
             <ActiveLink href="/learn" activeClassName="active" passHref><Nav.Link>ศูนย์การเรียนรู้</Nav.Link></ActiveLink>
             <ActiveLink href="/blog" activeClassName="active" passHref><Nav.Link>บล็อก</Nav.Link></ActiveLink>
             <ActiveLink href="/community" activeClassName="active" passHref><Nav.Link>ชุมชน</Nav.Link></ActiveLink>
+            <ActiveLink href="/airri" activeClassName="active" passHref><Nav.Link>แอร์ริ</Nav.Link></ActiveLink>
             <ActiveLink href="/contactus" activeClassName="active" passHref><Nav.Link>ติดต่อเรา</Nav.Link></ActiveLink>
           </Nav>
           <Nav>

@@ -5,31 +5,117 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image'
 
-import { longdo, map, LongdoMap } from '../src/LongdoMap';
+import { longdo, map, LongdoMap } from '../../src/LongdoMap';
 
-import airriLogo from '../public/images/Airri_Logo.svg';
+import airriLogo from '../../public/images/Airri_Logo.svg';
 
-import smileIcon from '../public/images/smile.svg';
-import smilingIcon from '../public/images/smiling.svg';
-import neutralIcon from '../public/images/neutral.svg';
-import sadIcon from '../public/images/sad.svg';
-import cryingIcon from '../public/images/crying.svg';
-import thermometerIcon from '../public/images/thermometer.svg';
-import humidityIcon from '../public/images/humidity.svg';
-import pressureIcon from '../public/images/pressure.svg';
-import dust2_5Icon from '../public/images/dust2.5.svg';
-import dust1_0Icon from '../public/images/dust1.0.svg';
-import dust10Icon from '../public/images/dust10.svg';
-import windSpeedIcon from '../public/images/anemometer.svg';
-import windDirectionIcon from '../public/images/wind-rose.svg';
-import lightIcon from '../public/images/sun.svg';
-import uvIcon from '../public/images/uv.svg';
-import rainIcon from '../public/images/raining.svg';
-import co2Icon from '../public/images/co2.svg';
+import smileIcon from '../../public/images/smile.svg';
+import smilingIcon from '../../public/images/smiling.svg';
+import neutralIcon from '../../public/images/neutral.svg';
+import sadIcon from '../../public/images/sad.svg';
+import cryingIcon from '../../public/images/crying.svg';
+import thermometerIcon from '../../public/images/thermometer.svg';
+import humidityIcon from '../../public/images/humidity.svg';
+import pressureIcon from '../../public/images/pressure.svg';
+import dust2_5Icon from '../../public/images/dust2.5.svg';
+import dust1_0Icon from '../../public/images/dust1.0.svg';
+import dust10Icon from '../../public/images/dust10.svg';
+import windSpeedIcon from '../../public/images/anemometer.svg';
+import windDirectionIcon from '../../public/images/wind-rose.svg';
+import lightIcon from '../../public/images/sun.svg';
+import uvIcon from '../../public/images/uv.svg';
+import rainIcon from '../../public/images/raining.svg';
+import co2Icon from '../../public/images/co2.svg';
 
-import styles from '../sass/airri.module.scss';
+import styles from '../../sass/airri.module.scss';
 
 const MakerPopup = ({ DeviceInfo }) => {
+    const [ data, setData ] = React.useState(null);
+
+    React.useEffect(async () => {
+        if (data) {
+            return;
+        }
+
+        const { mac_address } = DeviceInfo;
+
+        let callAPI = await fetch(`/api/airri/${mac_address}`, {
+            method: "GET"
+        });
+
+        if (callAPI.status === 200) {
+            const sensorData = await callAPI.json();
+            setData(sensorData);
+        } else {
+            console.error("Get data error code", callAPI.status);
+        }
+    }, [ data ]);
+
+    const dataLast = data?.at(-1) || { };
+
+    const propertyInfo = {
+        temp: {
+            label: "อุณหภูมิ",
+            unit: "°C",
+            icon: thermometerIcon
+        },
+        humi: {
+            label: "ความชื้น",
+            unit: "%RH",
+            icon: humidityIcon
+        },
+        pressure: {
+            label: "ความกดอากาศ",
+            unit: "Pa",
+            icon: pressureIcon
+        },
+        light: {
+            label: "แสงสว่าง",
+            unit: "lx",
+            icon: lightIcon
+        },
+        uv: {
+            label: "UV index",
+            unit: "",
+            icon: uvIcon
+        },
+        pm010: {
+            label: "ฝุ่น PM1.0",
+            unit: "ug/m^2",
+            icon: dust1_0Icon
+        },
+        pm025: {
+            label: "ฝุ่น PM2.5",
+            unit: "ug/m^2",
+            icon: dust2_5Icon
+        },
+        pm100: {
+            label: "ฝุ่น PM10",
+            unit: "ug/m^2",
+            icon: dust10Icon
+        },
+        wind_speed: {
+            label: "ความเร็มลม",
+            unit: "m/s",
+            icon: windSpeedIcon
+        },
+        wind_dir: {
+            label: "ทิศทางลม",
+            unit: "°",
+            icon: windDirectionIcon
+        },
+        rain: {
+            label: "ปริมาณน้ำฝน",
+            unit: "mm",
+            icon: rainIcon
+        },
+        co2: {
+            label: "CO2",
+            unit: "ug",
+            icon: co2Icon
+        },
+    }
+
     return (
         <div className={styles.MakerPopupContainer}>
             <div className={styles.MakerPopupOverviewBox}>
@@ -42,114 +128,15 @@ const MakerPopup = ({ DeviceInfo }) => {
                 </div>
             </div>
             <div className={styles.MakerPopupValueBoxList}>
-                <div className={styles.MakerPopupValueBox}>
+                {Object.entries(propertyInfo).map(([ field, info ]) => dataLast.hasOwnProperty(field) && <div className={styles.MakerPopupValueBox}>
                     <div>
-                        <Image src={thermometerIcon} alt="thermometer icon" />
+                        <Image src={info.icon} alt="" />
                     </div>
                     <div>
-                        <h2>อุณหภูมิ</h2>
-                        <div>123 °C</div>
+                        <h2>{info.label}</h2>
+                        <div>{dataLast[field]} {info.unit}</div>
                     </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={humidityIcon} alt="humidity icon" />
-                    </div>
-                    <div>
-                        <h2>ความชื้น</h2>
-                        <div>123 %RH</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={pressureIcon} alt="pressure icon" />
-                    </div>
-                    <div>
-                        <h2 style={{ fontSize: 10 }}>ความกดอากาศ</h2>
-                        <div>123 Pa</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={dust2_5Icon} alt="PM2.5 icon" />
-                    </div>
-                    <div>
-                        <h2>ฝุ่น PM2.5</h2>
-                        <div>123 ug</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={dust1_0Icon} alt="PM1.0 icon" />
-                    </div>
-                    <div>
-                        <h2>ฝุ่น PM1.0</h2>
-                        <div>123 ug</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={dust10Icon} alt="PM10 icon" />
-                    </div>
-                    <div>
-                        <h2>ฝุ่น PM10</h2>
-                        <div>123 ug</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={windSpeedIcon} alt="Wind Speed icon" />
-                    </div>
-                    <div>
-                        <h2 style={{ fontSize: 12 }}>ความเร็มลม</h2>
-                        <div>123 m/s</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={windDirectionIcon} alt="Wind Direction icon" />
-                    </div>
-                    <div>
-                        <h2>ทิศทางลม</h2>
-                        <div>123 °</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={lightIcon} alt="sun icon" />
-                    </div>
-                    <div>
-                        <h2>แสงสว่าง</h2>
-                        <div>10 lx</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={uvIcon} alt="UV index icon" />
-                    </div>
-                    <div>
-                        <h2>UV index</h2>
-                        <div>123</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={rainIcon} alt="sun icon" />
-                    </div>
-                    <div>
-                        <h2 style={{ fontSize: 12 }}>ปริมาณน้ำฝน</h2>
-                        <div>5 mm</div>
-                    </div>
-                </div>
-                <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={co2Icon} alt="UV index icon" />
-                    </div>
-                    <div>
-                        <h2>CO2</h2>
-                        <div>500 ug</div>
-                    </div>
-                </div>
+                </div>)}
             </div>
             <div className={styles.MakerPopupEndCredit}>
                 รายงานโดย <span>{DeviceInfo?.user_name || "ไม่รู้จัก"}</span> ∘ 
@@ -159,7 +146,7 @@ const MakerPopup = ({ DeviceInfo }) => {
     )
 };
 
-export default function AirriPage({ host, url, devices, dataReportCount }) {
+export default function AirriPage({ host, url, devices, dataReportCount, influx }) {
     const initMap = () => {
         map.Ui.Crosshair.visible(false);
 
@@ -208,7 +195,7 @@ export default function AirriPage({ host, url, devices, dataReportCount }) {
                         loadDetail: element => {
                             element.style.display = "flex";
                             element.style["flex-direction"] = "column";
-                            ReactDOM.render(<MakerPopup DeviceInfo={device} />, element);
+                            ReactDOM.render(<MakerPopup DeviceInfo={device} influx={influx} />, element);
                         },
                         size: { 
                             width: 320
@@ -298,29 +285,18 @@ export default function AirriPage({ host, url, devices, dataReportCount }) {
     )
 }
 
-const { Client } = require('pg');
+import dbClient from '../../component/DatabaseConnect';
 
 export async function getServerSideProps({ req, query }) {
-    const client = new Client({
-        host: process.env.POSTGRES_HOST,
-        port: process.env.POSTGRES_PORT,
-        user: process.env.POSTGRES_USERNAME,
-        password: process.env.POSTGRES_PASSWORD,
-        database: process.env.POSTGRES_DATABASE,
-    });
-    client.connect();
-
-    const devices = await client.query('SELECT users.name AS user_name, devices.name AS device_name, mac_address, location, aqi FROM public.devices INNER JOIN public.users ON devices.owner = users.id WHERE devices.last_push >= NOW() - INTERVAL \'1 HOURS\'');
-    const systemInfo = await client.query('SELECT counter FROM system WHERE id = 1;');
-
-    client.end();
-
+    const devices = await dbClient.query('SELECT users.name AS user_name, devices.name AS device_name, mac_address, location, aqi, last_push FROM public.devices LEFT JOIN public.users ON devices.owner = users.email WHERE devices.last_push >= NOW() - INTERVAL \'1 HOURS\'');
+    const systemInfo = await dbClient.query('SELECT counter FROM public.system WHERE id = 1');
+    
     return { 
         props: { 
-            devices: devices.rows, 
-            dataReportCount: systemInfo?.rows?.[0].counter || "?", 
+            devices: (devices?.rows || []).map(a => Object.assign(a, { last_push: new Date(a.last_push).getTime() })), 
+            dataReportCount: systemInfo?.rows?.[0]?.counter || 0, 
             host: req.headers.host, 
-            url: req.url 
+            url: req.url
         }
     }
 }
