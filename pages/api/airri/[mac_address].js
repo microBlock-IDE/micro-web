@@ -1,6 +1,6 @@
 import nextConnect from 'next-connect';
 
-import dbClient from '../../../component/DatabaseConnect';
+import dbClient from '../../../src/DatabaseConnect';
 const { InfluxDB, Point } = require('@influxdata/influxdb-client');
 
 const handler = nextConnect();

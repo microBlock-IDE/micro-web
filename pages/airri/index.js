@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image'
 
 import { longdo, map, LongdoMap } from '../../src/LongdoMap';
+import TimePassed from '../../src/TimePassed';
 
 import airriLogo from '../../public/images/Airri_Logo.svg';
 
@@ -140,7 +141,7 @@ const MakerPopup = ({ DeviceInfo }) => {
             </div>
             <div className={styles.MakerPopupEndCredit}>
                 รายงานโดย <span>{DeviceInfo?.user_name || "ไม่รู้จัก"}</span> ∘ 
-                ข้อมูลเมื่อ 5 นาทีที่แล้ว
+                ข้อมูลเมื่อ {TimePassed(new Date(DeviceInfo?.last_push))} นาทีที่แล้ว
             </div>
         </div>
     )
@@ -285,7 +286,7 @@ export default function AirriPage({ host, url, devices, dataReportCount, influx 
     )
 }
 
-import dbClient from '../../component/DatabaseConnect';
+import dbClient from '../../src/DatabaseConnect';
 
 export async function getServerSideProps({ req, query }) {
     const devices = await dbClient.query('SELECT users.name AS user_name, devices.name AS device_name, mac_address, location, aqi, last_push FROM public.devices LEFT JOIN public.users ON devices.owner = users.email WHERE devices.last_push >= NOW() - INTERVAL \'1 HOURS\'');
