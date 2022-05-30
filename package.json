@@ -15,18 +15,20 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.12",
+    "@influxdata/influxdb-client": "^1.25.0",
     "@mui/material": "^5.3.1",
     "bootstrap": "^4.5.3",
     "disqus-react": "^1.0.10",
     "js-base64": "^3.6.0",
     "next": "^12.0.9",
+    "next-connect": "^0.12.2",
     "nextjs-progressbar": "0.0.6",
     "nprogress": "^0.2.0",
+    "pg": "^8.7.3",
     "react": "^17.0.2",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.2",
     "react-load-script": "0.0.6",
-    "sass": "^1.49.4",
-    "pg": "^8.7.3"
+    "sass": "^1.49.4"
   }
 }
