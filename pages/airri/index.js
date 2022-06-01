@@ -40,7 +40,7 @@ const MakerPopup = ({ DeviceInfo }) => {
 
         const { mac_address } = DeviceInfo;
 
-        let callAPI = await fetch(`/api/airri/${mac_address}`, {
+        let callAPI = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/devices/${mac_address}/data`, {
             method: "GET"
         });
 
@@ -147,7 +147,24 @@ const MakerPopup = ({ DeviceInfo }) => {
     )
 };
 
-export default function AirriPage({ host, url, devices, dataReportCount, influx }) {
+export default function AirriPage({ host, url }) {
+    const [ devices, setDevices ] = React.useState([ ]);
+    const [ dataReportCount, setDataReportCount ] = React.useState("LOADING");
+
+    React.useEffect(async () => {
+        let callAPI = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/devices`, {
+            method: "GET"
+        });
+
+        if (callAPI.status === 200) {
+            const data = await callAPI.json();
+            setDevices(data?.devices || []);
+            setDataReportCount(data?.dataReportCount || "?");
+        } else {
+            console.error("Get data error code", callAPI.status);
+        }
+    }, [ ]);
+
     const initMap = () => {
         map.Ui.Crosshair.visible(false);
 
@@ -286,20 +303,11 @@ export default function AirriPage({ host, url, devices, dataReportCount, influx 
     )
 }
 
-import dbClient from '../../src/DatabaseConnect';
-
-export async function getServerSideProps({ req, query }) {
-    const devices = await dbClient.query('SELECT users.name AS user_name, devices.name AS device_name, mac_address, location, aqi, last_push FROM public.devices LEFT JOIN public.users ON devices.owner = users.email WHERE devices.last_push >= NOW() - INTERVAL \'1 HOURS\'');
-    const systemInfo = await dbClient.query('SELECT counter FROM public.system WHERE id = 1');
-    
+export async function getServerSideProps({ req }) {
     return { 
         props: { 
-            devices: (devices?.rows || []).map(a => Object.assign(a, { last_push: new Date(a.last_push).getTime() })), 
-            dataReportCount: systemInfo?.rows?.[0]?.counter || 0, 
             host: req.headers.host, 
             url: req.url
         }
     }
 }
-  
-  
