@@ -208,7 +208,7 @@ export default function AirriPage({ host, url }) {
                         </div>
                         <div>
                             <h2>ผู้สนับสนุน</h2>
-
+                            <p>กลุ่มอาร์ทรอน (Artron)</p>
                         </div>
                     </div>
                 </footer>
