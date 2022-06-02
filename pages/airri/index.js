@@ -10,6 +10,7 @@ import TimePassed from '../../src/TimePassed';
 
 import airriLogo from '../../public/images/Airri_Logo.svg';
 
+import questionIcon from '../../public/images/question.svg';
 import smileIcon from '../../public/images/smile.svg';
 import smilingIcon from '../../public/images/smiling.svg';
 import neutralIcon from '../../public/images/neutral.svg';
@@ -29,6 +30,123 @@ import rainIcon from '../../public/images/raining.svg';
 import co2Icon from '../../public/images/co2.svg';
 
 import styles from '../../sass/airri.module.scss';
+
+
+const dataToAQI = data => {
+    const mapValue = (value, min1, max1, min2, max2) => min2 + ((value - min1) / (max1 - min1) * (max2 - min2));
+
+    if (typeof data.pm025 !== "undefined") {
+        const dataValue = +data.pm025;
+        if (dataValue <= 25) {
+            return {
+                aqi: dataValue.toFixed(0),
+                level: 1
+            }
+        }
+        if (dataValue <= 37) {
+            return {
+                aqi: mapValue(dataValue, 26, 37, 26, 50).toFixed(0),
+                level: 2
+            }
+        }
+        if (dataValue <= 50) {
+            return {
+                aqi: mapValue(dataValue, 38, 50, 51, 100).toFixed(0),
+                level: 3
+            }
+        }
+        if (dataValue <= 90) {
+            return {
+                aqi: mapValue(dataValue, 51, 90, 101, 200).toFixed(0),
+                level: 4
+            }
+        }
+        return {
+            aqi: mapValue(dataValue, 51, 90, 101, 200).toFixed(0),
+            level: 5
+        }
+    }
+
+    if (typeof data.pm100 !== "undefined") {
+        const dataValue = +data.pm100;
+        if (dataValue <= 50) {
+            return {
+                aqi: mapValue(dataValue, 0, 50, 0, 25).toFixed(0),
+                level: 1
+            }
+        }
+        if (dataValue <= 80) {
+            return {
+                aqi: mapValue(dataValue, 51, 80, 26, 37).toFixed(0),
+                level: 2
+            }
+        }
+        if (dataValue <= 50) {
+            return {
+                aqi: mapValue(dataValue, 81, 120, 51, 100).toFixed(0),
+                level: 3
+            }
+        }
+        if (dataValue <= 90) {
+            return {
+                aqi: mapValue(dataValue, 121, 180, 101, 200).toFixed(0),
+                level: 4
+            }
+        }
+        return {
+            aqi: mapValue(dataValue, 121, 180, 101, 200).toFixed(0),
+            level: 5
+        }
+    }
+
+    // console.log("data", data);
+
+    if (typeof data.temp !== "undefined") {
+        return {
+            aqi: (+data.temp).toFixed(0) + " °C",
+            level: 2,
+            isTemp: true
+        }
+    }
+
+    return {
+        aqi: "?",
+        level: 0
+    }
+};
+
+const aqiLevelTo = [
+    {
+        label: "ไม่มีข้อมูล",
+        icon: questionIcon,
+        color: "213, 216, 220"
+    },
+    {
+        label: "อากาศดีมาก",
+        icon: smilingIcon,
+        color: "52, 152, 219"
+    },
+    {
+        label: "อากาศดี",
+        icon: smileIcon,
+        color: "46, 204, 113"
+    },
+    {
+        label: "ปานกลาง",
+        icon: neutralIcon,
+        color: "241, 196, 15"
+    },
+    {
+        label: "เริ่มมีผลต่อสุขภาพ",
+        icon: sadIcon,
+        color: "243, 156, 18"
+    },
+    {
+        label: "มีผลต่อสุขภาพ",
+        icon: cryingIcon,
+        color: "231, 76, 60"
+    },
+];
 
 const MakerPopup = ({ DeviceInfo }) => {
     const [ data, setData ] = React.useState(null);
@@ -82,17 +200,17 @@ const MakerPopup = ({ DeviceInfo }) => {
         },
         pm010: {
             label: "ฝุ่น PM1.0",
-            unit: "ug/m^2",
+            unit: <span>µg/m<sup>3</sup></span>,
             icon: dust1_0Icon
         },
         pm025: {
             label: "ฝุ่น PM2.5",
-            unit: "ug/m^2",
+            unit: <span>µg/m<sup>3</sup></span>,
             icon: dust2_5Icon
         },
         pm100: {
             label: "ฝุ่น PM10",
-            unit: "ug/m^2",
+            unit: <span>µg/m<sup>3</sup></span>,
             icon: dust10Icon
         },
         wind_speed: {
@@ -112,20 +230,23 @@ const MakerPopup = ({ DeviceInfo }) => {
         },
         co2: {
             label: "CO2",
-            unit: "ug",
+            unit: "ppm",
             icon: co2Icon
         },
     }
 
+    const aqiInfo = dataToAQI(dataLast || { });
+    const color = `rgb(${aqiLevelTo[aqiInfo?.level || 0]?.color})`;
+
     return (
         <div className={styles.MakerPopupContainer}>
-            <div className={styles.MakerPopupOverviewBox}>
+            <div className={styles.MakerPopupOverviewBox} style={{ borderColor: color }}>
                 <div>
-                    <Image src={smileIcon} alt="Feel Icon" />
+                    <Image src={aqiLevelTo[aqiInfo?.level || 0]?.icon || ""} alt="Feel Icon" />
                 </div>
                 <div>
-                    <h1>อากาศดี</h1>
-                    <div>ดัชนีคุณภาพอากาศ (AQI): {DeviceInfo.aqi}</div>
+                    <h1 style={{ backgroundColor: color }}>{aqiLevelTo[aqiInfo?.level || 0]?.label || "ไม่มีข้อมูล"}</h1>
+                    <div>ดัชนีคุณภาพอากาศ (AQI): {aqiInfo.aqi}</div>
                 </div>
             </div>
             <div className={styles.MakerPopupValueBoxList}>
@@ -141,7 +262,7 @@ const MakerPopup = ({ DeviceInfo }) => {
             </div>
             <div className={styles.MakerPopupEndCredit}>
                 รายงานโดย <span>{DeviceInfo?.user_name || "ไม่รู้จัก"}</span> ∘ 
-                ข้อมูลเมื่อ {TimePassed(new Date(DeviceInfo?.last_push))} นาทีที่แล้ว
+                ข้อมูลเมื่อ {TimePassed(new Date(DeviceInfo?.last_push))}ที่แล้ว
             </div>
         </div>
     )
@@ -150,6 +271,7 @@ const MakerPopup = ({ DeviceInfo }) => {
 export default function AirriPage({ host, url }) {
     const [ devices, setDevices ] = React.useState([ ]);
     const [ dataReportCount, setDataReportCount ] = React.useState("LOADING");
+    const [ longdoMap, setLongdoMap ] = React.useState(null);
 
     React.useEffect(async () => {
         let callAPI = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/devices`, {
@@ -165,29 +287,36 @@ export default function AirriPage({ host, url }) {
         }
     }, [ ]);
 
-    const initMap = () => {
-        map.Ui.Crosshair.visible(false);
+    React.useEffect(() => {
+        const map = longdoMap;
+        if (!map) {
+            return;
+        }
 
-        for (const device of devices) {
-            const location = device.location.split(",").map(a => a.trim());
+        map.Overlays.clear();
 
+        for (const deviceInfo of devices) {
+            const location = ((deviceInfo?.location || "").split(",") || []).map(a => a.trim());
+            const aqiInfo = dataToAQI(deviceInfo?.last_data || { });
+            const color = aqiLevelTo[aqiInfo.level]?.color;
+            
             const canvas = document.createElement("canvas");
             canvas.width = 100;
             canvas.height = 100;
             const ctx = canvas.getContext("2d");
             ctx.beginPath();
             ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, 0, 2 * Math.PI);
-            ctx.fillStyle = "rgba(46, 204, 113, 0.3)";
+            ctx.fillStyle = `rgba(${color}, 0.3)`;
             ctx.fill();
             ctx.beginPath();
             ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2.5, 0, 2 * Math.PI);
-            ctx.fillStyle = "#2ECC71";
+            ctx.fillStyle = `rgba(${color}, 1)`;
             ctx.fill();
             ctx.textBaseline = "middle";
             ctx.textAlign = "center";
             ctx.fillStyle = "#FFFFFF";
-            ctx.font = "34px sans-serif";
-            ctx.fillText(device?.aqi || "?", (canvas.width / 2), (canvas.height / 2));
+            ctx.font = (aqiInfo.isTemp ? "24px" : "34px") + " sans-serif";
+            ctx.fillText(aqiInfo.aqi, (canvas.width / 2), (canvas.height / 2));
 
             const localMarker = new longdo.Marker(
                 { 
@@ -205,15 +334,13 @@ export default function AirriPage({ host, url }) {
                             height: 50,
                         }
                     },
-                    title: device?.device_name || "?",
+                    title: deviceInfo?.device_name || "?",
                     weight: longdo.OverlayWeight.Top,
                     popup: {
-                        title: device?.device_name || "?",
+                        title: deviceInfo?.device_name || "?",
                         detail: "",
                         loadDetail: element => {
-                            element.style.display = "flex";
-                            element.style["flex-direction"] = "column";
-                            ReactDOM.render(<MakerPopup DeviceInfo={device} influx={influx} />, element);
+                            ReactDOM.render(<MakerPopup DeviceInfo={deviceInfo} />, element);
                         },
                         size: { 
                             width: 320
@@ -224,6 +351,12 @@ export default function AirriPage({ host, url }) {
             );
             map.Overlays.add(localMarker);
         }
+    }, [ longdoMap, devices ]);
+
+    const initMap = () => {
+        map.Ui.Crosshair.visible(false);
+
+        setLongdoMap(map);
     };
     
     return (
@@ -285,6 +418,7 @@ export default function AirriPage({ host, url }) {
                             <ul>
                                 <li><a href="" target="_blank">การส่งข้อมูลคุณภาพอากาศขึ้นระบบแอร์ริด้วยบอร์ด KidBright</a></li>
                                 <li><a href="https://github.com/microBlock-IDE/Airri-daily-data" target="_blank">ฐานข้อมูลคุณภาพอากาศแบบเปิดข้อมูลจากแอร์ริ อัพเดทรายวัน</a></li>
+                                <li><a href="https://airri.microblock.app/" target="_blank">ระบบจัดการอุปกรณ์แอร์ริ</a></li>
                             </ul>
                         </div>
                         <div>

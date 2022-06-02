@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start"
   },
@@ -15,7 +15,6 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.12",
-    "@influxdata/influxdb-client": "^1.25.0",
     "@mui/material": "^5.3.1",
     "bootstrap": "^4.5.3",
     "disqus-react": "^1.0.10",
@@ -24,7 +23,6 @@
     "next-connect": "^0.12.2",
     "nextjs-progressbar": "0.0.6",
     "nprogress": "^0.2.0",
-    "pg": "^8.7.3",
     "react": "^17.0.2",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^17.0.2",
