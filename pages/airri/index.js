@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import Head from 'next/head';
 import Image from 'next/image'
 
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
+
 import { longdo, map, LongdoMap } from '../../src/LongdoMap';
 import DataToAQI from '../../src/DataToAQI';
 import MakerPopup from '../../component/MakerPopup';
@@ -13,9 +16,10 @@ import airriLogo from '../../public/images/Airri_Logo.svg';
 import styles from '../../sass/airri.module.scss';
 
 export default function AirriPage({ host, url }) {
-    const [ devices, setDevices ] = React.useState([ ]);
-    const [ dataReportCount, setDataReportCount ] = React.useState("LOADING");
-    const [ longdoMap, setLongdoMap ] = React.useState(null);
+    const [devices, setDevices] = React.useState([]);
+    const [dataReportCount, setDataReportCount] = React.useState("LOADING");
+    const [longdoMap, setLongdoMap] = React.useState(null);
+    const [autoUpdateTime, setAutoUpdateTime] = React.useState(0);
 
     const loadData = async () => {
         let callAPI = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/devices`, {
@@ -36,6 +40,25 @@ export default function AirriPage({ host, url }) {
         await loadData();
     }, [ ]);
 
+    const [ updateTimer, setUpdateTimer ] = React.useState(null);
+    React.useEffect(async () => {
+        const updateDataByTimer = async () => {
+            if (updateTimer) {
+                clearTimeout(updateTimer);
+            }
+            await loadData();
+            if (autoUpdateTime > 0) {
+                const timer = setTimeout(updateDataByTimer, autoUpdateTime * 60 * 1000);
+                setUpdateTimer(timer);
+            }
+        }
+        updateDataByTimer();
+
+        return () => {
+            clearTimeout(updateTimer);
+        }
+    }, [ autoUpdateTime ]);
+
     React.useEffect(() => {
         const map = longdoMap;
         if (!map) {
@@ -46,7 +69,7 @@ export default function AirriPage({ host, url }) {
 
         for (const deviceInfo of devices) {
             const location = ((deviceInfo?.location || "").split(",") || []).map(a => a.trim());
-            const aqiInfo = DataToAQI(deviceInfo?.last_data || { });
+            const aqiInfo = DataToAQI(deviceInfo?.last_data || {});
 
             const canvas = document.createElement("canvas");
             canvas.width = 100;
@@ -67,46 +90,60 @@ export default function AirriPage({ host, url }) {
             ctx.fillText(aqiInfo.aqi, (canvas.width / 2), (canvas.height / 2));
 
             const localMarker = new longdo.Marker(
-                { 
-                    lat: location?.[0], 
-                    lon: location?.[1] 
+                {
+                    lat: location?.[0],
+                    lon: location?.[1]
                 }, {
-                    icon: {
-                        url: canvas.toDataURL(),
-                        offset: { 
-                            x: 25, 
-                            y: 25 
-                        },
-                        size: {
-                            width: 50,
-                            height: 50,
-                        }
+                icon: {
+                    url: canvas.toDataURL(),
+                    offset: {
+                        x: 25,
+                        y: 25
                     },
-                    title: deviceInfo?.device_name || "?",
-                    weight: longdo.OverlayWeight.Top,
-                    popup: {
-                        title: deviceInfo?.device_name || "?",
-                        detail: "",
-                        loadDetail: element => {
-                            ReactDOM.render(<MakerPopup key={deviceInfo?.mac_address} DeviceInfo={deviceInfo} />, element);
-                        },
-                        size: { 
-                            width: 320
-                        },
-                        autoFocus: true,
+                    size: {
+                        width: 50,
+                        height: 50,
                     }
+                },
+                title: deviceInfo?.device_name || "?",
+                weight: longdo.OverlayWeight.Top,
+                popup: {
+                    title: deviceInfo?.device_name || "?",
+                    detail: "",
+                    loadDetail: element => {
+                        ReactDOM.render(<MakerPopup key={deviceInfo?.mac_address} DeviceInfo={deviceInfo} />, element);
+                    },
+                    size: {
+                        width: 320
+                    },
+                    autoFocus: true,
                 }
+            }
             );
             map.Overlays.add(localMarker);
         }
-    }, [ longdoMap, devices ]);
+    }, [longdoMap, devices]);
 
     const initMap = () => {
         map.Ui.Crosshair.visible(false);
 
         setLongdoMap(map);
     };
-    
+
+    const [selelctAutoupdateMenu, setSelelctAutoupdateMenu] = React.useState(null);
+    const handleCloseSelelctAutoupdateMenu = () => {
+        setSelelctAutoupdateMenu(null);
+    }
+
+    const handleSelectAutoupdateTimeClick = time => () => {
+        setAutoUpdateTime(time);
+        handleCloseSelelctAutoupdateMenu();
+    }
+
+    const handleAutoupdateTimeClick = e => {
+        setSelelctAutoupdateMenu(e.target);
+    }
+
     return (
         <>
             <Head>
@@ -125,7 +162,7 @@ export default function AirriPage({ host, url }) {
 
             <main>
                 <header className={styles.header}>
-                    <div className={[ styles.Container, styles.HeaderContainer ].join(" ")}>
+                    <div className={[styles.Container, styles.HeaderContainer].join(" ")}>
                         <div className={styles.TopLogo}>
                             <Image
                                 src={airriLogo}
@@ -137,20 +174,20 @@ export default function AirriPage({ host, url }) {
                             <ul>
                                 <li>อุปกรณ์ในระบบ {devices?.length || 0} ชิ้น</li>
                                 <li>ข้อมูลรายงานแล้ว {dataReportCount || 0} ครั้ง</li>
-                                <li>อัพเดทอัตโนมัติ <span className={style.autoUpdateSelect}></span></li>
+                                <li>อัพเดทอัตโนมัติ <span className={styles.autoUpdateSelect} onClick={handleAutoupdateTimeClick}>{autoUpdateTime === 0 ? "ปิด" : (`ทุก ๆ ${autoUpdateTime} นาที`)}</span></li>
                             </ul>
                         </div>
                     </div>
                 </header>
 
                 <section className={styles.section}>
-                    <div className={[ styles.Container, styles.MapContainer ].join(" ")}>
-                        <LongdoMap id="longdo-map" mapKey={"26f2a71e2c2a4575c815236830f7f25a"} callback={initMap} />
+                    <div className={[styles.Container, styles.MapContainer].join(" ")}>
+                        <LongdoMap id="longdo-map" mapKey={process.env.NEXT_PUBLIC_LONGDO_MAP_KEY} callback={initMap} />
                     </div>
                 </section>
 
                 <footer className={styles.footer}>
-                    <div className={[ styles.Container, styles.FooterContainer ].join(" ")}>
+                    <div className={[styles.Container, styles.FooterContainer].join(" ")}>
                         <div className={styles.FooterLogo}>
                             <Image
                                 src={airriLogo}
@@ -171,7 +208,7 @@ export default function AirriPage({ host, url }) {
                         </div>
                         <div>
                             <h2>ผู้สนับสนุน</h2>
-                            
+
                         </div>
                     </div>
                 </footer>
@@ -181,14 +218,28 @@ export default function AirriPage({ host, url }) {
                     </div>
                 </div>
             </main>
+
+            <Menu
+                anchorEl={selelctAutoupdateMenu}
+                open={Boolean(selelctAutoupdateMenu)}
+                onClose={handleCloseSelelctAutoupdateMenu}
+            >
+                {[ 0, 1, 5, 10].map(time => 
+                <MenuItem
+                    selected={time === autoUpdateTime}
+                    onClick={handleSelectAutoupdateTimeClick(time)}
+                >
+                    {time === 0 ? "ปิด" : (`ทุก ๆ ${time} นาที`)}
+                </MenuItem>)}
+            </Menu>
         </>
     )
 }
 
 export async function getServerSideProps({ req }) {
-    return { 
-        props: { 
-            host: req.headers.host, 
+    return {
+        props: {
+            host: req.headers.host,
             url: req.url
         }
     }
