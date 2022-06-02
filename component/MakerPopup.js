@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image'
 
+import CircularProgress from '@mui/material/CircularProgress';
+
 import TimePassed from '../src/TimePassed';
 import DataToAQI from '../src/DataToAQI';
 
@@ -20,13 +22,9 @@ import rainIcon from '../public/images/raining.svg';
 import co2Icon from '../public/images/co2.svg';
 
 export default function MakerPopup({ DeviceInfo }) {
-    const [ data, setData ] = React.useState(null);
+    const [data, setData] = React.useState(null);
 
     React.useEffect(async () => {
-        if (data) {
-            return;
-        }
-
         const { mac_address } = DeviceInfo;
 
         let callAPI = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/api/devices/${mac_address}/data`, {
@@ -39,9 +37,9 @@ export default function MakerPopup({ DeviceInfo }) {
         } else {
             console.error("Get data error code", callAPI.status);
         }
-    }, [ data ]);
+    }, [ ]);
 
-    const dataLast = data?.at(-1) || { };
+    const dataLast = data?.at(-1) || {};
 
     const propertyInfo = {
         temp: {
@@ -106,35 +104,42 @@ export default function MakerPopup({ DeviceInfo }) {
         },
     }
 
-    const aqiInfo = DataToAQI(dataLast || { });
+    const aqiInfo = DataToAQI(dataLast || {});
     const color = `rgb(${aqiInfo?.color})`;
 
     return (
         <div className={styles.MakerPopupContainer}>
-            <div className={styles.MakerPopupOverviewBox} style={{ borderColor: color }}>
-                <div>
-                    <Image src={aqiInfo?.icon || ""} alt="Feel Icon" />
-                </div>
-                <div>
-                    <h1 style={{ backgroundColor: color }}>{aqiInfo?.label || "ไม่มีข้อมูล"}</h1>
-                    <div>ดัชนีคุณภาพอากาศ (AQI): {aqiInfo.aqi}</div>
-                </div>
-            </div>
-            <div className={styles.MakerPopupValueBoxList}>
-                {Object.entries(propertyInfo).map(([ field, info ]) => dataLast.hasOwnProperty(field) && <div className={styles.MakerPopupValueBox}>
-                    <div>
-                        <Image src={info.icon} alt="" />
+            {!data && 
+                <div className={styles.MakerPopupLoading}><CircularProgress /></div>
+            }
+            {data &&
+                <>
+                    <div className={styles.MakerPopupOverviewBox} style={{ borderColor: color }}>
+                        <div>
+                            <Image src={aqiInfo?.icon || ""} alt="Feel Icon" />
+                        </div>
+                        <div>
+                            <h1 style={{ backgroundColor: color }}>{aqiInfo?.label || "ไม่มีข้อมูล"}</h1>
+                            <div>ดัชนีคุณภาพอากาศ (AQI): {aqiInfo.aqi}</div>
+                        </div>
                     </div>
-                    <div>
-                        <h2>{info.label}</h2>
-                        <div>{dataLast[field]} {info.unit}</div>
+                    <div className={styles.MakerPopupValueBoxList}>
+                        {Object.entries(propertyInfo).map(([field, info]) => dataLast.hasOwnProperty(field) && <div className={styles.MakerPopupValueBox}>
+                            <div>
+                                <Image src={info.icon} alt="" />
+                            </div>
+                            <div>
+                                <h2>{info.label}</h2>
+                                <div>{dataLast[field]} {info.unit}</div>
+                            </div>
+                        </div>)}
                     </div>
-                </div>)}
-            </div>
-            <div className={styles.MakerPopupEndCredit}>
-                รายงานโดย <span>{DeviceInfo?.user_name || "ไม่รู้จัก"}</span> ∘ 
-                ข้อมูลเมื่อ {TimePassed(new Date(DeviceInfo?.last_push))}ที่แล้ว
-            </div>
+                    <div className={styles.MakerPopupEndCredit}>
+                        รายงานโดย <span>{DeviceInfo?.user_name || "ไม่รู้จัก"}</span> ∘
+                        ข้อมูลเมื่อ {TimePassed(new Date(DeviceInfo?.last_push))}ที่แล้ว
+                    </div>
+                </>
+            }
         </div>
     )
 };
