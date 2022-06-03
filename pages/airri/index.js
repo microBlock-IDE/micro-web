@@ -36,10 +36,6 @@ export default function AirriPage({ host, url }) {
         }
     }
 
-    React.useEffect(async () => {
-        await loadData();
-    }, [ ]);
-
     const [ updateTimer, setUpdateTimer ] = React.useState(null);
     React.useEffect(async () => {
         const updateDataByTimer = async () => {
@@ -228,6 +224,7 @@ export default function AirriPage({ host, url }) {
                 <MenuItem
                     selected={time === autoUpdateTime}
                     onClick={handleSelectAutoupdateTimeClick(time)}
+                    key={time}
                 >
                     {time === 0 ? "ปิด" : (`ทุก ๆ ${time} นาที`)}
                 </MenuItem>)}
