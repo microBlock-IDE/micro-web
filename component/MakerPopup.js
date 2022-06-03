@@ -130,7 +130,7 @@ export default function MakerPopup({ DeviceInfo }) {
                             </div>
                             <div>
                                 <h2>{info.label}</h2>
-                                <div>{dataLast[field]} {info.unit}</div>
+                                <div>{dataLast[field].toFixed(1)} {info.unit}</div>
                             </div>
                         </div>)}
                     </div>
