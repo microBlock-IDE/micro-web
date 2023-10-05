@@ -34,17 +34,17 @@ export default function Contactus({ host, url }) {
         <section className="container">
           <Row className="mb-5">
             <Col className="border-right" md="auto">
-              <img src="/images/IOXhop_logo_200x200.png" alt="IOXhop logo" />
+              <img src="/images/ArtronShop_logo_200x200.png" alt="ArtronShop logo" />
             </Col>
             <Col>
-              <div className="h3">ร้านไอโอเอ็กซ์ฮ๊อบ</div>
+              <div className="h3">ArtronShop</div>
               <p>ผู้พัฒนาโครงการ microBlock ด้านการพัฒนาโปรแกรม microBlock IDE , Extension, เฟิร์มแวร์ MicroPython , เว็บไซต์ microBlock IDE และโปรแกรม/เครื่องมือต่าง ๆ ในนาม microBlock</p>
               <p><strong>ช่องทางการติดต่อ</strong></p>
               <ul>
-                <li>อีเมล์. sonthaya.nt[แอด]hotmail.com</li>
-                <li>Facebook. <a href="https://www.facebook.com/ioxhop" target="_blank">ร้านไอโอเอ็กซ์ฮ๊อบ</a>, <a href="https://fb.me/maxthai" target="_blank">Sonthaya Nongnuch</a></li>
+                <li>อีเมล์. contact[แอด]artronshop.co.th</li>
+                <li>Facebook. <a href="https://www.facebook.com/ArtronShop" target="_blank">ร้านไอโอเอ็กซ์ฮ๊อบ</a>, <a href="https://fb.me/maxthai" target="_blank">Sonthaya Nongnuch</a></li>
                 <li>GitHub. <a href="https://github.com/maxpromer" target="_blank">maxpromer</a></li>
-                <li>เว็บไซต์. <a href="https://www.ioxhop.com/" target="_blank">ร้านไอโอเอ็กซ์ฮ๊อบ</a></li>
+                <li>เว็บไซต์. <a href="https://www.artronshop.co.th/" target="_blank">ArtronShop</a></li>
               </ul>
               <p><strong>ตัวอย่างเคสที่ควรติดต่อ</strong></p>
               <ul>
@@ -78,6 +78,27 @@ export default function Contactus({ host, url }) {
                 <li>ต้องการทีมวิทยากรอบรมเกี่ยวกับ KidBright</li>
                 <li>ต้องการเอกสาร หนังสือ เกี่ยวกับ KidBright</li>
                 <li>ต้องการอุปกรณ์เสริม KidBright</li>
+              </ul>
+            </Col>
+          </Row>
+          <Row className="mb-5" id="EasyKidsRobotics">
+            <Col className="border-right" md="auto">
+              <img src="/images/EasyKidsRobotics_logo_200x200.png" alt="EasyKids Robotics logo" />
+            </Col>
+            <Col>
+              <div className="h3">EasyKids Robotics</div>
+              <p>ศูนย์การเรียนรู้การเขียนโปรแกรมและนวัตกรรมหุ่นยนต์ --- มีส่วนร่วมในโครงการ microBlock ด้านการสนับสนุนอุปกรณ์, ค่าใช้จ่าย, ทดสอบ เพื่อเพิ่มบอร์ด 3in1 EASYKIDS BOARD ให้คำแนะนำการพัฒนาโปรแกรม และอื่น ๆ</p>
+              <p><strong>ช่องทางการติดต่อ</strong></p>
+              <ul>
+                <li>คอร์สเรียน 099 110 0202 , สั่งซื้อสินค้า 093 219 9121</li>
+                <li>Facebook. <a href="https://www.facebook.com/Easykidsrobotics/" target="_blank">EasyKidsRobotics</a></li>
+                <li>เว็บไซต์. <a href="https://www.easykidsrobotics.com/" target="_blank">EasyKids Robotics ศูนย์การเรียนรู้การเขียนโปรแกรมและนวัตกรรมหุ่นยนต์</a></li>
+              </ul>
+              <p><strong>ตัวอย่างเคสที่ควรติดต่อ</strong></p>
+              <ul>
+                <li>สอบถามเกี่ยวกับการอบรม microBlock IDE</li>
+                <li>สอบถามเกี่ยวกับการอบรมการสร้างหุ่นยนต์ การเขียนโปรแกรมเบื้องต้น</li>
+                <li>สอบถามการใช้งานบอร์ด 3in1 EASYKIDS BOARD</li>
               </ul>
             </Col>
           </Row>
