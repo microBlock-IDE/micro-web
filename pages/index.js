@@ -206,26 +206,63 @@ export default function Home({ host, url }) {
               </Col>
               <Col lg={true}>
                 <div className="mb-3">
-                  <img src="/images/KidBright32-V1.5-Rev.3.png" alt="KidBright32 V1.5 Rev.3" />
+                  <img src="/images/KidBright32iP.png" alt="KidBright32iP" />
                 </div>
-                <p className="h5">KidBright32 V1.5 Rev.3</p>
-                <p>บอร์ด KidBright32 รุ่นล่าสุดจากทีมพัฒนาบอร์ด KidBright32</p>
+                <p className="h5">KidBright32iP</p>
+                <p>บอร์ด KidBright32 สีชมพูจาก INEX</p>
+              </Col>
+              <Col lg={true}>
+                <div className="mb-3">
+                  <img src="/images/KidBright32iA.png" alt="KidBright32iA" />
+                </div>  
+                <p className="h5">KidBright32iA</p>
+                <p>บอร์ด KidBright32 รุ่นเพิ่มเซ็นเซอร์วัดความเร่งและเข็มทิศจาก INEX</p>
               </Col>
             </Row>
             <Row className="mb-5">
-              <Col lg={true}>
-                <div className="mb-3">
-                  <img src="/images/KidBright32i.png" alt="KidBright32i" />
-                </div>  
-                <p className="h5">KidBright32i</p>
-                <p>บอร์ด KidBright32 รุ่นเพิ่มเซ็นเซอร์วัดความเร่งและเข็มทิศจาก INEX</p>
-              </Col>
               <Col lg={true}>
                 <div className="mb-3">
                   <img src="/images/KidBright32-V1.6.png" alt="KidBright32 V1.6 by Gravitech" />
                 </div>
                 <p className="h5">KidBright32 V1.6 by Gravitech</p>
                 <p>บอร์ด KidBright32 รุ่นเพิ่มเซ็นเซอร์วัดความเร่งและแอลอีดี RGB จากกราวิเทคไทย</p>
+              </Col>
+              <Col lg={true}>
+                <div className="mb-3">
+                  <img src="/images/Arduino-Uno-R3.png" alt="Arduino Uno R3" />
+                </div>  
+                <p className="h5">Arduino Uno R3</p>
+                <p>บอร์ดไมโครคอนโทรลเลอร์ยอดนิยมด้านการศึกษาจาก Arduino</p>
+              </Col>
+              <Col lg={true}>
+                <div className="mb-3">
+                  <img src="/images/Arduino-Mega-2560.png" alt="Arduino Mega 2560" />
+                </div>
+                <p className="h5">Arduino Mega 2560</p>
+                <p>บอร์ดไมโครคอนโทรลเลอร์จาก Arduino เพิ่มขาต่อใช้งานที่มากกว่า</p>
+              </Col>
+            </Row>
+            <Row className="mb-5">
+              <Col lg={true}>
+                <div className="mb-3">
+                  <img src="/images/IPST-WiFi.png" alt="IPST-WiFi" />
+                </div>
+                <p className="h5">IPST-WiFi</p>
+                <p>แผงวงจรเรียนรู้การเขียนโปรแกรมเพื่อควบคุมอุปกรณ์และเชื่อมต่ออินเทอร์เน็ต</p>
+              </Col>
+              <Col lg={true}>
+                <div className="mb-3">
+                  <img src="/images/i-Duino-R4.png" alt="i-Duino R4" />
+                </div>  
+                <p className="h5">i-Duino R4</p>
+                <p>บอร์ดไมโครคอนโทรลเลอร์ที่มาพร้อมการเชื่อมต่อ WiFi และบลูทูธ</p>
+              </Col>
+              <Col lg={true}>
+                <div className="mb-3">
+                  <img src="/images/POP-32.png" alt="POP-32" />
+                </div>
+                <p className="h5">POP-32</p>
+                <p>บอร์ดควบคุมหุ่นยนต์จาก INEX ขับมอเตอร์ 4 ช่อง ใช้รถวิ่งตามเส้น/ซูโม่ ใช้ในรายการแข่งขัน WRG/MRC ได้</p>
               </Col>
             </Row>
           </div>

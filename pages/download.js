@@ -61,17 +61,17 @@ export default function Download({ host, url }) {
               }} />
             </div>
             <div className="col-lg bg-light box-link-download mb-5">
-              <h3>microBlock IDE V2.9.0 <Badge variant="success">ล่าสุด</Badge></h3>
-              <p>เผยแพร่เมื่อ 5 ตุลาคม 2566 โดย microBlock</p>
+              <h3>microBlock IDE V3.0.0 <Badge variant="success">ล่าสุด</Badge></h3>
+              <p>เผยแพร่เมื่อ 18 เมษายน 2567 โดย microBlock</p>
               <ul style={{
                 marginBottom: 0
               }}>
-                <li><a href="https://bit.ly/3FoshdX">ดาวน์โหลดไฟล์ติดตั้งโปรแกรมสำหรับ Windows 64 บิต</a></li>
-                <li><a href="https://bit.ly/46fDdpL">ดาวน์โหลดโปรแกรมสำหรับ Windows 64 บิต (ไม่ต้องติดตั้ง)</a></li>
-                <li><a href="https://bit.ly/46E30ro">ดาวน์โหลดไฟล์ติดตั้งสำหรับ Windows 32 บิต</a></li>
-                <li><a href="https://bit.ly/48Frnqy">ดาวน์โหลดโปรแกรมสำหรับ Windows 32 บิต (ไม่ต้องติดตั้ง)</a></li>
-                <li><a href="https://bit.ly/46zB204">ดาวน์โหลดโปรแกรมสำหรับ macOS</a></li>
-                <li><a href="https://bit.ly/3tkTNWM">ดาวน์โหลดโปรแกรมสำหรับ Ubuntu 64 บิต (ไม่ต้องติดตั้ง)</a></li>
+                <li><a href="https://bit.ly/3w7jgEN">ดาวน์โหลดไฟล์ติดตั้งโปรแกรมสำหรับ Windows 64 บิต</a></li>
+                <li><a href="https://bit.ly/3U6zpSO">ดาวน์โหลดโปรแกรมสำหรับ Windows 64 บิต (ไม่ต้องติดตั้ง)</a></li>
+                <li><a href="https://bit.ly/3Q55sRW">ดาวน์โหลดไฟล์ติดตั้งสำหรับ Windows 32 บิต</a></li>
+                <li><a href="https://bit.ly/3Q6qU9t">ดาวน์โหลดโปรแกรมสำหรับ Windows 32 บิต (ไม่ต้องติดตั้ง)</a></li>
+                <li><a href="https://bit.ly/4aWqb2w">ดาวน์โหลดโปรแกรมสำหรับ macOS</a></li>
+                <li><a href="https://bit.ly/3xGXjwQ">ดาวน์โหลดโปรแกรมสำหรับ Ubuntu 64 บิต (ไม่ต้องติดตั้ง)</a></li>
               </ul>
             </div>
           </div>
